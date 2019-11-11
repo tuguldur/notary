@@ -16,6 +16,7 @@ class users extends Seeder
             $user->name = "Нэргүй Бямбадорж";
             $user->email = 'b18.bymbuush@gmail.com';
             $user->registration_number = 'ТА97011810';
+            $user->type = '2';// 1 = user; 2 = notary; 3 = admin;
             $user->password = bcrypt('password');
             $user->created_at = Carbon::now()->format('Y-m-d H:i:s');
             $user->updated_at = Carbon::now()->format('Y-m-d H:i:s');
