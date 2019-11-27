@@ -15,7 +15,7 @@ class users extends Seeder
             // Create User
             $user = new User();
             $user->name = "Нэргүй Бямбадорж";
-            $user->email = 'b18.bymbuush@gmail.com';
+            $user->email = 'client@brainstall.team';
             $user->registration_number = 'ТА97011810';
             $user->phone = '99868427';
             $user->type = '1';// 1 = user; 2 = notary; 3 = admin;

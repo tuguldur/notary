@@ -4,24 +4,33 @@
 # Install Dependencies
 composer install
 
-# Create Database(Tamirwellness) before Migrate
+# Create Database(laravel) before Migrate
 
-# Run Migrations
-php artisan migrate
-
-# Import Users...
-php artisan db:seed
+# Run Migrations with seed
+php artisan migrate --seed
 
 # If you get an error about an encryption key
 php artisan key:generate
 ```
 
-## Access to Admin panel
+## Access to Dashboard
 
 ```
-Route: /dashboard
+type: admin
 email: admin@brainstall.team
-password: Password
+password: password
+```
+
+```
+type: notary
+email: notary@brainstall.team
+password: password
+```
+
+```
+type: client
+email: client@brainstall.team
+password: password
 ```
 
 ### Author
