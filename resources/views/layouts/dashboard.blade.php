@@ -130,6 +130,7 @@
 
   <script src="{{ asset('assets/demo/demo.js') }}"></script>
   <script src="{{Request::is('user') ? asset('assets/js/admin/users.js'): ''}}"></script>
+  <script src="{{Request::is('request') ? asset('assets/js/admin/request.js'): ''}}"></script>
   <script>
     $(document).ready(function() {
       // Javascript method's body can be found in assets/js/demos.js

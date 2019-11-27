@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use App\User;
+use App\confirmation;
 class adminUsers extends Controller
 {
     private $user;
@@ -87,6 +88,8 @@ class adminUsers extends Controller
     public function delete($id)
     {
         $user = User::find($id);
+        $confirmation = confirmation::where('notary_id','=',$id);
+        $confirmation->delete();
         $user->delete();
         return "ok";
     }

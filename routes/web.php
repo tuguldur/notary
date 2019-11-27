@@ -33,3 +33,5 @@ Route::get("/confirm",'notaryConfirm@index');
 Route::post("/confirm",'notaryConfirm@confirm');
 // Admin get confirmations
 Route::get("/request",'notaryConfirm@all');
+Route::post("/request",'notaryConfirm@switch');
+Route::get("/request/{id}",'notaryConfirm@find');

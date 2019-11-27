@@ -41,14 +41,14 @@
         </form>
 
       @elseif($confirmation->status==1)
-      <h4 class="text-center mb-3">Таний мэдээлэл шалгагдаж байна түр хүлээнэ үү.</h4>
+      <h4 class="text-center mb-3">Таны мэдээллийг шалгагдаж байна түр хүлээнэ үү.</h4>
       <div class="row">
             <div class="col-md-6 mr-auto ml-auto">
                 <img src="{{ asset($confirmation->picture) }}" alt="баримт" id="cert">
             </div>
         </div>
       @elseif($confirmation->status==0)
-      <p class="text-center mb-3">Таний баримт баталгаажсан байна.</p>
+      <p class="text-center mb-3">Таны баримт баталгаажсан байна.</p>
       <script>window.location = "/dashboard";</script>
       @endif
 

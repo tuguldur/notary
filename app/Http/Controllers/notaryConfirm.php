@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use App\confirmation;
+use App\User;
 use Carbon\Carbon;
 use Auth;
 class notaryConfirm extends Controller
@@ -35,7 +36,39 @@ class notaryConfirm extends Controller
         return redirect('/confirm');
     }
     public function all(Request $request){
-        $confirmation = confirmation::get();
-        return view('notary/confirm',['confirmation'=>$confirmation]);
+        $confirmation = confirmation::join('users', 'users.id', '=', 'confirmations.notary_id')
+        ->select('users.*','confirmations.*','confirmations.id as conf_id')
+        ->orderBy('status', 'desc')
+        ->get();
+        return view('admin/request',['confirmation'=>$confirmation]);
+    }
+    public function find($id){
+        $confirmation = confirmation::join('users', 'users.id', '=', 'confirmations.notary_id')
+        ->where('confirmations.id','=',$id)
+        ->select('users.*','confirmations.*','confirmations.id as conf_id')
+        ->get();
+        return response()->json($confirmation[0]);
+    }
+    public function switch(Request $request){
+        $user_id = $request->user_id;
+        $request_id = $request->id;
+        if($request->status == 0){
+            $user = User::find($request->user_id);
+            $user->confirmed = '0';
+            $user->save();
+            $req = confirmation::find($request_id);
+            $req->status = '1';
+            $req->save();
+            return back();
+        }
+        else{
+            $user = User::find($request->user_id);
+            $user->confirmed = '1';
+            $user->save();
+            $req = confirmation::find($request_id);
+            $req->status = '0';
+            $req->save();
+            return back();
+        }
     }
 }
