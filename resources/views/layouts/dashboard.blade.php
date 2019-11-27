@@ -133,8 +133,21 @@
   <script>
     $(document).ready(function() {
       // Javascript method's body can be found in assets/js/demos.js
-      demo.initDashboardPageCharts();
+      // demo.initDashboardPageCharts();
+      @if(Auth::user()->type == 2 && Auth::user()->confirmed == 0 && Request::is('confirm') !== true)
+      $.notify({
+        icon: "add_alert",
+        message: "Таны бүртгэл баталгаажаагүй байна.</br><b><a href='/confirm' class='text-white'>энд дарж</a></b> бүртгэлээ баталгаажуулна уу!"
 
+        },{
+          type: 'danger',
+          timer: 100000,
+          placement: {
+              from: 'top',
+              align: 'center'
+          }
+        });
+        @endif
     });
   </script>
 </body>

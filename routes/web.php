@@ -27,5 +27,9 @@ Route::get('/user/{id}','adminUsers@find');
 Route::get('/user/delete/{id}','adminUsers@delete');
 Route::post('/user/check/email','adminUsers@check_email');
 Route::post('/user/check/registration_number','adminUsers@check_registration_number');
-
 Route::post('/user/add','adminUsers@add');
+// Notary
+Route::get("/confirm",'notaryConfirm@index');
+Route::post("/confirm",'notaryConfirm@confirm');
+// Admin get confirmations
+Route::get("/request",'notaryConfirm@all');
