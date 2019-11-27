@@ -74,14 +74,15 @@ $(function() {
             $("#email").val(user.email);
             $("#registration_number").val(user.registration_number);
             $("#role_select").val(user.type);
+            $("#phone").val(user.phone);
             $("#user-loader").addClass("d-none");
             $("#user-main").removeClass("d-none");
         });
     });
     $("#users").on("hidden.bs.modal", function() {
-        $("#username,#email,#password,#password_next,#registration_number").val(
-            ""
-        );
+        $(
+            "#username,#email,#password,#password_next,#registration_number,#phone"
+        ).val("");
         $("#role_select").val("1");
         $("#user_id").val("0");
         $("#user-loader").removeClass("d-none");

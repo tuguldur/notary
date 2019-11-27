@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\User;
+use Auth;
+use Hash;
 class Profile extends Controller
 {
     public function __construct()
@@ -14,22 +16,50 @@ class Profile extends Controller
         return view('profile');
     }
     public function update(Request $request){
+        $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'old_password' => ['required', 'string', 'min:8'],
+            'email' => 'unique:users,email,'.Auth::user()->id.',id',
+            'registration_number' => ['required', 'string', 'max:10'],
+            'phone' => ['required', 'numeric'],
+            'address' => 'required',
+        ],[
+            // цахим хаяг алдаа
+            'email.required' => 'Цахим хаяг аа оруулна уу.',
+            'email.email' => 'Цахим хаяг аа зөв оруулна уу.',
+            // нэр алдаа
+            'name.required' => 'Нэрээ оруулна уу.',
+            // шинэ нууц үг алдаа
+            'new_password.min' => 'Нууц үг доод тал нь 8 оронтой байна.',
+            // хуучин нууц үг алдаа
+            'old_password.required' => 'Нууц үгээ оруулна уу.',
+            'old_password.min' => 'Нууц үг доод тал нь 8 оронтой байна.',
+            // Регистрийн дугаар алдаа
+            'registration_number.max' => 'Регистрийн дугаар дээд тал нь 10 оронтой байна.',
+            'registration_number.required' => 'Регистрийн дугаараа оруулна уу.',
+            // хаяг алдаа
+            'address.required' => 'Хаягаа оруулна уу.',
+            // утасны дугаар алдаа
+            'phone.required' => 'Утасны дугаараа оруулна уу.',
+            'phone.numeric' => 'Утасны дугаар зөвхөн тооноос бүрдсэн байна.',
+       ]);
         $old_password = Auth::user()->password;
         $check_password = $request->old_password;
         $new_password = $request->new_password;
-        if (Hash::check($check_password, $old_password)) 
+        if (Hash::check($check_password, $old_password))
         {
             $user = User::find(Auth::user()->id);
-            $user->name = $request->username;
+            $user->name = $request->name;
             $user->email = $request->email;
-            $user->registration_number = strtoupper($request->registration_number);
+            $user->registration_number = mb_strtoupper($request->registration_number);
+            $user->phone = $request->phone;
             $user->address = $request->address;
-            $user->password = bcrypt($request->password);
+            $new_password && $user->password = bcrypt($request->new_password);
             $user->save();
-            return response()->json(['status' => 'true']);
+            return back();
         }
         else{
-            return response()->json(['status' => 'false']);
+            return back()->withError('Нууц үг таарахгүй байна.');
         }
     }
 }

@@ -60,7 +60,7 @@ class RegisterController extends Controller
             'name.required' => 'Нэрээ оруулна уу.',
             'password.required' => 'Нууц үгээ оруулна уу.',
             'password.min' => 'Нууц үг доод тал нь 8 оронтой байна.',
-            'password.confirm' => 'Нууц үг таарахгүй байна.',
+            'password.confirmed' => 'Нууц үг таарахгүй байна.',
             'registration_number.max' => 'Регистрийн дугаар дээд тал нь 10 оронтой байна.',
             'registration_number.required' => 'Регистрийн дугаараа оруулна уу.',
        ]);
@@ -77,7 +77,7 @@ class RegisterController extends Controller
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
-            'registration_number' => strtoupper($data['registration_number']),
+            'registration_number' => mb_strtoupper($data['registration_number']),
             'password' => Hash::make($data['password']),
         ]);
     }

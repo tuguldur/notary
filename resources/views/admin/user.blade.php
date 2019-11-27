@@ -64,7 +64,11 @@
                 <input type="email" class="form-control" id="email" placeholder="Цахим хаяг" name="email" required>
                 <small id="add_email" class="form-text text-danger"></small>
               </div>
-              
+              <div class="form-group">
+                <label for="phone">Утасны дугаар</label>
+                <input type="number" class="form-control" id="phone" placeholder="Утасны дугаар" name="phone" required>
+                <small id="add_phone" class="form-text text-danger"></small>
+              </div>
               <div class="form-group">
                 <label for="registration_number">Регистрийн дугаар</label>
                 <input type="text" class="form-control" id="registration_number" placeholder="Регистрийн дугаар" name="registration_number" required>
