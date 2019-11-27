@@ -10,6 +10,7 @@
     @yield('title')
   </title>
   <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
+  <meta name="csrf-token" content="{{ csrf_token() }}">
   <!--     Fonts and icons     -->
   <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet" />
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
@@ -19,30 +20,42 @@
   <link href="{{ asset('assets/demo/demo.css') }}" rel="stylesheet" />
 </head>
 
-<body class="">
-  <div class="wrapper ">
+<body class="notary">
+  <div class="wrapper">
     <div class="sidebar" data-color="blue">
       <div class="logo">
         <a href="/profile" class="simple-text logo-normal text-center"> {{{ isset(Auth::user()->name) ? Auth::user()->name : Auth::user()->email }}}</a>
       </div>
       <div class="sidebar-wrapper" id="sidebar-wrapper">
         <ul class="nav">
-          <li class="active ">
+          <li class="{{ Request::is('dashboard') ? 'active' : '' }}">
             <a href="/dashboard">
               <i class="now-ui-icons design_app"></i>
               <p>Dashboard</p>
             </a>
           </li>
-          <li>
-            <a href="/notifications">
+          <li class="{{ Request::is('request') ? 'active' : '' }}" style="display: {{Auth::user()->type == 3 ? '' : 'none'}}">
+            <a href="/request">
               <i class="now-ui-icons ui-1_bell-53"></i>
-              <p>Notifications</p>
+              <p>Хүсэлтүүд</p>
             </a>
           </li>
-          <li>
+          <li class="{{ Request::is('contracts') ? 'active' : '' }}">
+            <a href="/contracts">
+              <i class="now-ui-icons education_paper"></i>
+              <p>Гэрээнүүд</p>
+            </a>
+          </li>
+          <li class="{{ Request::is('profile') ? 'active' : '' }}" style="display: {{Auth::user()->type == 3 ? 'none' : ''}}">
             <a href="/profile">
               <i class="now-ui-icons users_single-02"></i>
-              <p>User Profile</p>
+              <p>Бүртгэл</p>
+            </a>
+          </li>
+          <li class="{{ Request::is('user') ? 'active' : '' }}" style="display: {{Auth::user()->type == 3 ? '' : 'none'}}">
+            <a href="/user">
+              <i class="now-ui-icons users_circle-08"></i>
+              <p>Бүх хэрэглэгч</p>
             </a>
           </li>
         </ul>
@@ -112,10 +125,11 @@
   <script src="{{ asset('assets/js/plugins/chartjs.min.js') }}"></script>
   <!--  Notifications Plugin    -->
   <script src="{{ asset('assets/js/plugins/bootstrap-notify.js') }}"></script>
-  <!-- Control Center for Now Ui Dashboard: parallax effects, scripts for the example pages etc -->
+
   <script src="{{ asset('assets/js/now-ui-dashboard.min.js?v=1.3.0') }}" type="text/javascript"></script>
-  <!-- Now Ui Dashboard DEMO methods, don't include it in your project! -->
+
   <script src="{{ asset('assets/demo/demo.js') }}"></script>
+  <script src="{{Request::is('user') ? asset('assets/js/admin/users.js'): ''}}"></script>
   <script>
     $(document).ready(function() {
       // Javascript method's body can be found in assets/js/demos.js

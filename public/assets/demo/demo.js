@@ -335,7 +335,6 @@ demo = {
       options: gradientChartOptionsConfiguration
     });
 
-
     ctx = document.getElementById('lineChartExampleWithNumbersAndGrid').getContext("2d");
 
     gradientStroke = ctx.createLinearGradient(500, 0, 100, 0);
