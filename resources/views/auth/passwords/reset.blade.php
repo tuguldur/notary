@@ -1,12 +1,12 @@
 @extends('layouts.main')
-
+@section('title', 'Нууц үгээ сэргээх')
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">
-                <h5 class="title text-center">Reset Password</h5>
+                <h5 class="title text-center">Нууц үг сэргээх</h5>
                 </div>
                 <div class="card-body">
                     <form method="POST" action="{{ route('password.update') }}">

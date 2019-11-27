@@ -53,7 +53,17 @@ class RegisterController extends Controller
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
             'registration_number' => ['required', 'string', 'max:10','unique:users']
-        ]);
+        ],[
+            'email.required' => 'Цахим хаяг аа оруулна уу.',
+            'email.email' => 'Цахим хаяг аа зөв оруулна уу.',
+            'email.exists' => 'Цахим хаяг бүртгэлтэй байна.',
+            'name.required' => 'Нэрээ оруулна уу.',
+            'password.required' => 'Нууц үгээ оруулна уу.',
+            'password.min' => 'Нууц үг доод тал нь 8 оронтой байна.',
+            'password.confirm' => 'Нууц үг таарахгүй байна.',
+            'registration_number.max' => 'Регистрийн дугаар дээд тал нь 10 оронтой байна.',
+            'registration_number.required' => 'Регистрийн дугаараа оруулна уу.',
+       ]);
     }
 
     /**

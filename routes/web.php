@@ -16,9 +16,8 @@ Route::get('/', function () {
 });
 
 Auth::routes();
-
+// нэвтэрсэн үед орох холбоосууд
 Route::get('/dashboard', 'HomeController@index')->name('home');
-
-Auth::routes();
-
-Route::get('/dashboard', 'HomeController@index')->name('home');
+// profile view, update
+Route::get('/profile', 'Profile@index');
+Route::post('/profile', 'Profile@update');
