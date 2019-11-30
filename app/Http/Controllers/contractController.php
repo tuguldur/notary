@@ -20,10 +20,10 @@ class contractController extends Controller
         return view('notary/contract',['accreditations'=>$accreditation,'loans'=>$loan]);
     }
     public function accreditation(){
-        return view('create/accreditation');
+        return view('contract/create/accreditation');
     }
     public function loan(){
-        return view('create/loan');
+        return view('contract/create/loan');
     }
     public function save_accreditation(Request $req){
         $insert = array(
@@ -113,6 +113,18 @@ class contractController extends Controller
     }
     public function delete_accreditation($id){
         accreditation::find($id)->delete();
+        return redirect('/contract');
+    } 
+    public function delete_loan($id){
+        loan::find($id)->delete();
+        return redirect('/contract');
+    }
+    public function view_accreditation($id){
+        accreditation::find($id)->get();
+        return redirect('/contract');
+    } 
+    public function view_loan($id){
+        loan::find($id)->get();
         return redirect('/contract');
     }
 }

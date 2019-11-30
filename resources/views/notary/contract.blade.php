@@ -44,7 +44,7 @@
                                 !!}
                             </p>
                             <p class="card-text tex-muted">
-                                 {{$accreditation->created_at->diffForHumans()}}
+                            Үүсгэсэн: {{$accreditation->created_at->diffForHumans()}}
 						    </p>
                             <a href="/view/accreditation/{{$accreditation->id}}" class="card-link">Үзэх</a>
 
@@ -71,7 +71,7 @@
                                 !!}
                             </p>
                             <p class="card-text tex-muted">
-                                 {{$loan->created_at->diffForHumans()}}
+                              Үүсгэсэн: {{$loan->created_at->diffForHumans()}}
 						    </p>
                             <a href="/view/loan/{{$loan->id}}" class="card-link">Үзэх</a>
 
