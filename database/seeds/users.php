@@ -30,6 +30,7 @@ class users extends Seeder
             $user->registration_number = 'ТА00000000';
             $user->phone = '99111199';
             $user->type = '2';// 1 = user; 2 = notary; 3 = admin;
+            $user->confirmed = '1';
             $user->password = bcrypt('password');
             $user->created_at = Carbon::now()->format('Y-m-d H:i:s');
             $user->updated_at = Carbon::now()->format('Y-m-d H:i:s');

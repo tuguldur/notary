@@ -140,6 +140,10 @@
     $(document).ready(function() {
       // Javascript method's body can be found in assets/js/demos.js
       // demo.initDashboardPageCharts();
+
+      $(function () {
+        $('[data-toggle="tooltip"]').tooltip()
+      })
       @if(Auth::user()->type == 2 && Auth::user()->confirmed == 0 && Request::is('confirm') !== true)
       $.notify({
         icon: "add_alert",
