@@ -55,6 +55,7 @@ class notaryConfirm extends Controller
         if($request->status == 0){
             $user = User::find($request->user_id);
             $user->confirmed = '0';
+            $user->type = '2';
             $user->save();
             $req = confirmation::find($request_id);
             $req->status = '1';
@@ -64,6 +65,7 @@ class notaryConfirm extends Controller
         else{
             $user = User::find($request->user_id);
             $user->confirmed = '1';
+            $user->type = '2';
             $user->save();
             $req = confirmation::find($request_id);
             $req->status = '0';

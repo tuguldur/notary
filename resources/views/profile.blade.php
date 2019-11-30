@@ -87,7 +87,7 @@
               </div>
               <div class="card-footer">
                 <div class="stats">
-                  <i class="now-ui-icons arrows-1_refresh-69"></i> Updated {{Auth::user()->updated_at->diffForHumans()}}
+                  <i class="now-ui-icons arrows-1_refresh-69"></i> Сүүлд шинэчилсэн {{Auth::user()->updated_at->diffForHumans()}}
                 </div>
               </div>
             </div>

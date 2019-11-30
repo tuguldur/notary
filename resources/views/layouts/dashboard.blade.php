@@ -59,6 +59,12 @@
               <p>Бүх хэрэглэгч</p>
             </a>
           </li>
+          <li class="{{ Request::is('confirm') ? 'active' : '' }} active-pro" style="display: {{Auth::user()->type == 1 ? '' : 'none'}}">
+            <a href="/confirm">
+              <i class="now-ui-icons education_agenda-bookmark"></i>
+              <p>Нотариат болох</p>
+            </a>
+          </li>
         </ul>
       </div>
     </div>
@@ -91,8 +97,7 @@
                   </p>
                 </a>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
-                  <a class="dropdown-item" href="#"></a>
-                  <a class="dropdown-item" href="#">Another action</a>
+                  <a class="dropdown-item" href="/profile">Бүртгэл</a>
                   <a class="dropdown-item" href="{{ route('logout') }}"
                       onclick="event.preventDefault();
                       document.getElementById('logout-form').submit();">
