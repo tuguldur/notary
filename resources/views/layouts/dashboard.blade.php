@@ -41,10 +41,10 @@
               <p>Хүсэлтүүд</p>
             </a>
           </li>
-          <li class="{{ Request::is('contracts') ? 'active' : '' }}">
-            <a href="/contracts">
+          <li class="{{ Request::is('contract') ? 'active' : '' }}">
+            <a href="/contract">
               <i class="now-ui-icons education_paper"></i>
-              <p>Гэрээнүүд</p>
+              <p>Маягтууд</p>
             </a>
           </li>
           <li class="{{ Request::is('profile') ? 'active' : '' }}" style="display: {{Auth::user()->type == 3 ? 'none' : ''}}">

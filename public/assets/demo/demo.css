@@ -82,3 +82,64 @@
     color: #000;
     cursor: default;
 }
+/* page */
+page {
+    background: white;
+    display: block;
+    margin: 0 auto;
+    margin-bottom: 0.5cm;
+    margin-top: 0.5cm;
+    box-shadow: 0 0 0.5cm rgba(0, 0, 0, 0.5);
+}
+page.a4 {
+    font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+    width: 21cm;
+    height: auto;
+    min-height: 29.7cm;
+    padding: 2cm;
+}
+.print {
+    line-height: 2px !important;
+}
+.print input {
+    height: auto;
+    width: auto;
+    padding: 5px 10px;
+    position: relative;
+    margin: 0;
+    border: 0;
+    border-radius: 0;
+    border-bottom: 1px dotted #cfd2d5;
+    letter-spacing: normal;
+    font-size: 0.94118em;
+    background: transparent;
+    transition: 0.5s;
+}
+.print-main input {
+    height: auto;
+    width: auto;
+    padding: 5px 10px;
+    position: relative;
+    margin: 5px;
+    border: 0;
+    border-radius: 0;
+    border-bottom: 1px dotted #cfd2d5;
+    letter-spacing: normal;
+    font-size: 0.94118em;
+    background: transparent;
+    transition: 0.5s;
+}
+.print-main input[type="password"]:focus,
+.print-main input[type="email"]:focus,
+.print-main input[type="text"]:focus,
+.print-main input[type="number"]:focus {
+    border-bottom: 1px solid #188fff;
+    outline: 0;
+}
+.print input[type="password"]:focus,
+.print input[type="email"]:focus,
+.print input[type="text"]:focus,
+.print input[type="number"]:focus {
+    border-bottom: 1px solid #188fff;
+    outline: 0;
+}

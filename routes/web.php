@@ -36,3 +36,10 @@ Route::get("/request",'notaryConfirm@all');
 Route::get("/request/delete",'notaryConfirm@delete');
 Route::post("/request",'notaryConfirm@switch');
 Route::get("/request/{id}",'notaryConfirm@find');
+// contract
+Route::get("/contract","contractController@index");
+// create a contract
+Route::get("/create/accreditation","contractController@accreditation");
+Route::get("/create/loan","contractController@loan");
+Route::post("/create/accreditation","contractController@save_accreditation");
+Route::post("/create/loan","contractController@save_loan");
