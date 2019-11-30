@@ -71,4 +71,14 @@ class notaryConfirm extends Controller
             return back();
         }
     }
+    public function delete(Request $request){
+        $confirmation_id = $request->confirmation;
+        $notary_id = $request->notary;
+        $user = User::find($notary_id);
+        $user->confirmed = '0';
+        $user->save();
+        $req = confirmation::find($confirmation_id);
+        $req->delete();
+        return 'ok';
+    }
 }

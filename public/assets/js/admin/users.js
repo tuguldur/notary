@@ -24,10 +24,12 @@ $(function() {
     $("#email").blur(function() {
         var e = $(this).val();
         var email = e.trim();
+        var user_id = $("#user_id").val();
         var token = $('meta[name="csrf-token"]').attr("content");
         $.post("/user/check/email/", {
             email,
-            _token: token
+            _token: token,
+            user_id
         }).done(function(e) {
             if (e == "true") {
                 $("#save-user").prop("disabled", true);
@@ -41,10 +43,12 @@ $(function() {
     $("#registration_number").blur(function() {
         var e = $(this).val();
         var registration_number = e.trim();
+        var user_id = $("#user_id").val();
         var token = $('meta[name="csrf-token"]').attr("content");
         $.post("/user/check/registration_number", {
             registration_number,
-            _token: token
+            _token: token,
+            user_id
         }).done(function(e) {
             if (e == "true") {
                 $("#save-user").prop("disabled", true);
@@ -62,9 +66,10 @@ $(function() {
         $("#delete-user")
             .show()
             .attr("data-key", id);
+        $("#role-select-container").show();
         var userKey = $("#delete-user").attr("user-key");
         if (userKey == id) {
-            $("#delete-user").hide();
+            $("#delete-user,#role-select-container").hide();
         }
         $("#user_id").val(id);
         $("#users").modal("show");
@@ -83,6 +88,7 @@ $(function() {
         $(
             "#username,#email,#password,#password_next,#registration_number,#phone"
         ).val("");
+        $("#add_registration_number,#add_email").html("");
         $("#role_select").val("1");
         $("#user_id").val("0");
         $("#user-loader").removeClass("d-none");

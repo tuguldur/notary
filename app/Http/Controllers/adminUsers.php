@@ -67,7 +67,8 @@ class adminUsers extends Controller
     public function check_email(Request $req)
     {
         $email = $req->email;
-        $check = User::where('email', $email)->first();
+        $user_id = $req->user_id;
+        $check = User::where('id', '<>', $user_id)->where('email', $email)->first();
         if ($check) {
             return 'true';
         } else {
@@ -77,7 +78,8 @@ class adminUsers extends Controller
     public function check_registration_number(Request $req)
     {
         $registration_number = $req->registration_number;
-        $check = User::where('registration_number', $registration_number)->first();
+        $user_id = $req->user_id;
+        $check = User::where('id', '<>', $user_id)->where('registration_number', $registration_number)->first();
         if ($check) {
             return 'true';
         } else {

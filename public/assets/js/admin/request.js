@@ -1,4 +1,5 @@
 $(function() {
+    var notary_id, conf_id;
     $("#request-table").on("click", ".request-data", function() {
         var id = $(this).attr("data-key");
         $("#request").modal("show");
@@ -12,6 +13,8 @@ $(function() {
             $("#user_id").val(req.notary_id);
             $("#request_id").val(req.conf_id);
             $("#status_input").val(req.status);
+            notary_id = req.notary_id;
+            conf_id = req.conf_id;
             if (req.status == 0) {
                 $("#status").html(
                     '<span class="badge badge-success">Баталгаажсан</span>'
@@ -35,5 +38,15 @@ $(function() {
         $("#download").attr("href", "");
         $("#request-loader").removeClass("d-none");
         $("#request-main").addClass("d-none");
+    });
+    $("#delete").click(function() {
+        $(this).attr("disabled", true);
+        $.get(
+            "/request/delete/?notary=" + notary_id + "&confirmation=" + conf_id,
+            function(req) {
+                if (req == "ok") location.reload();
+            }
+        );
+        console.log(notary_id, conf_id);
     });
 });

@@ -84,6 +84,7 @@
                 <input type="password" class="form-control" id="password_next" placeholder="Нууц үг давтах" name="password_next" required>
                 <small id="add_password_next" class="form-text text-danger"></small>
               </div>
+              <div id="role-select-container">
               <span>Үүрэг сонгоно уу</span><br/>
               <div class="form-check form-check-inline">
               <select class="custom-select custom-select-sm" id="role_select" name="type">
@@ -92,12 +93,13 @@
                 <option value="3">Админ</option>
               </select>
               </div>
+              </div>
               @csrf
               <input type="hidden" value="0" name="id" id="user_id"/>
               <div class="d-flex mt-3">
-              <button type="submit" class="btn btn-primary" id="save-user">Save</button>
+              <button type="submit" class="btn btn-primary" id="save-user">Хадгалах</button>
                 <div class="spacer"></div>
-              <a class="btn btn-alert" id="delete-user" style="color:white;" user-key="{{Auth::user()->id}}">Delete</a>
+              <a class="btn btn-alert" id="delete-user" style="color:white;" user-key="{{Auth::user()->id}}">Устгах</a>
             </div>
             </div>
             </form>

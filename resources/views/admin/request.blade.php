@@ -77,6 +77,7 @@
                 <input type="text" class="form-control" id="registration_number" placeholder="Регистрийн дугаар" readonly>
               </div>
                 </div>
+                <div style="padding: 10px 0px; display: flex;">Төлөв:&nbsp&nbsp <div id="status" style="font-size:15px;"></div></div>
               @csrf
               <div class="row">
                   <div class="col-md-12">
@@ -90,7 +91,7 @@
               <input type="hidden" name="id" id="request_id"/>
               <input type="hidden" name="status" id="status_input"/>
               <div class="mt-3 d-flex" style="justify-content: space-between;">
-              <div style="padding: 18px 0px; display: inherit;">Төлөв:&nbsp&nbsp <div id="status"></div></div>
+              <a href="#" class="btn btn-secondary" id="delete">Устгах</a>
               <button type="submit" class="btn btn-primary float-right" id="save">Батлах</button>
             </div>
             </div>

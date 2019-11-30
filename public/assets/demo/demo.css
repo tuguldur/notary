@@ -78,3 +78,7 @@
 .table-hover > tbody > tr:hover {
     cursor: pointer;
 }
+.notary .form-control[readonly] {
+    color: #000;
+    cursor: default;
+}
