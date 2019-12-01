@@ -56,7 +56,15 @@
                         </div>
                     </div>
                 </div>
-                <button id="print_button"  class="btn btn-default">Хэвлэх</button>
+                <div class="w-100">
+                <button id="print_button" class="btn btn-default float-left">Хэвлэх</button>
+                <div class="float-right" style="line-height: 58px;">
+                {!! $accreditation->status == 1 
+                                   ? '<span class="badge text-warning" data-toggle="tooltip" data-placement="bottom" title="" style="font-size:12px;" data-original-title="Төлөх дүн:'.$accreditation->price.'">Төлбөр төлөх шаардлагатай</span>'
+                                   : "<span class='badge text-success'>Баталгаажсан</span>"
+                                !!}
+                <div>
+                </div>
         </div>
     </page>
 </div>

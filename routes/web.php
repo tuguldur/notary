@@ -12,9 +12,8 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect('/dashboard');
 });
-
 Auth::routes();
 // нэвтэрсэн үед орох холбоосууд
 Route::get('/dashboard', 'HomeController@index')->name('home');
@@ -38,16 +37,17 @@ Route::post("/request",'notaryConfirm@switch');
 Route::get("/request/{id}",'notaryConfirm@find');
 // contract
 Route::get("/contract","contractController@index");
-// create a contract
+// маягт үүсгэх
 Route::get("/create/accreditation","contractController@accreditation");
 Route::get("/create/loan","contractController@loan");
 Route::post("/create/accreditation","contractController@save_accreditation");
 Route::post("/create/loan","contractController@save_loan");
-// delete a contract
+// маягт устгах
 Route::get("/delete/accreditation/{id}","contractController@delete_accreditation");
 Route::get("/delete/loan/{id}","contractController@delete_loan");
-//view 
+// view 
 Route::get("/view/accreditation/{id}","contractController@view_accreditation");
 Route::get("/view/loan/{id}","contractController@view_loan");
+// маягтын төлөв өөрчөх
 
 
