@@ -127,4 +127,18 @@ class contractController extends Controller
         $loan = loan::find($id)->first();
         return view('/contract/view/loan',['loan' => $loan]);
     }
+    public function status_accreditation($id){
+        $accreditation = accreditation::find($id)->first();
+        if($accreditation->status==1) $accreditation->status = '2';
+        else $accreditation->status = '1';
+        $accreditation->save();
+        return back();
+    }
+    public function status_loan($id){
+        $loan = loan::find($id)->first();
+        if($loan->status==1) $loan->status = '2';
+        else $loan->status = '1';
+        $loan->save();
+        return back();
+    }
 }

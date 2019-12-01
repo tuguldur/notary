@@ -49,5 +49,7 @@ Route::get("/delete/loan/{id}","contractController@delete_loan");
 Route::get("/view/accreditation/{id}","contractController@view_accreditation");
 Route::get("/view/loan/{id}","contractController@view_loan");
 // маягтын төлөв өөрчөх
+Route::get('/status/accreditation/{id}','contractController@status_accreditation');
+Route::get('/status/loan/{id}','contractController@status_loan');
 
 

@@ -35,7 +35,7 @@
                     <div class="col-md-3">
                     <div class="card">
                         <div class="card-body">
-                            <h4 class="card-title mt-2">Итгэмжлэл</h4>
+                            <h4 class="card-title mt-2">Итгэмжлэл #{{$accreditation->id}}</h4>
                             <h6 class="card-subtitle mb-2 text-muted">Итгэмжлэлийн маягт (ерөнхий)</h6>
                             <p class="card-text">
                                 {!! $accreditation->status == 1 
@@ -47,10 +47,14 @@
                             Үүсгэсэн: {{$accreditation->created_at->diffForHumans()}}
 						    </p>
                             <a href="/view/accreditation/{{$accreditation->id}}" class="card-link">Үзэх</a>
-
                             <a href="/delete/accreditation/{{$accreditation->id}}" class="card-link float-right text-warning">Устгах</a>
-                            <a href="/confirm/accreditation/{{$accreditation->id}}" class="card-link float-right text-success">Батлах</a>
+                            @if($accreditation->status==1)
+                            <a href="/status/accreditation/{{$accreditation->id}}" class="card-link float-right text-success">Батлах</a>
+                            @else
+                            <a href="/status/accreditation/{{$accreditation->id}}" class="card-link float-right text-warning">Цуцлах</a>
+                            @endif
                         </div>
+                    </div>
                     </div>
             @endforeach
             </div>
@@ -62,7 +66,7 @@
                     <div class="col-md-3">
                     <div class="card">
                         <div class="card-body">
-                            <h4 class="card-title mt-2">Зээлийн гэрээ</h4>
+                            <h4 class="card-title mt-2">Зээлийн гэрээ #{{$loan->id}}</h4>
                             <h6 class="card-subtitle mb-2 text-muted">Зээл өгөгчийн гэрээний маягт</h6>
                             <p class="card-text">
                                 {!! $loan->status == 1 
@@ -76,8 +80,13 @@
                             <a href="/view/loan/{{$loan->id}}" class="card-link">Үзэх</a>
 
                             <a href="/delete/loan/{{$loan->id}}" class="card-link float-right text-warning">Устгах</a>
-                            <a href="/confirm/loan/{{$loan->id}}" class="card-link float-right text-success">Батлах</a>
+                            @if($loan->status==1)
+                            <a href="/status/loan/{{$loan->id}}" class="card-link float-right text-success">Батлах</a>
+                            @else
+                            <a href="/status/loan/{{$loan->id}}" class="card-link float-right text-warning">Цуцлах</a>
+                            @endif
                         </div>
+                    </div>
                     </div>
             @endforeach
             @endif
