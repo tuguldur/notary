@@ -2,80 +2,70 @@
 <div class="col-md-12">
     <page class="a4">
         <div class="row">
-            <form action="/create/accreditation" method="post">
-            @csrf
-                <div id="print">
+                <div id="printer" class="preview">
                     <p class="font-weight-bold text-uppercase text-center">ИТГЭМЖЛЭЛ</p>
-                    <span class="print">
-                    {{ date('Y-m-d') }}<input name="ex1loc" placeholder="үйлдсэн газар" class="pull-right print float-right" type="text" size="0">
-						</span>
+                    <span class="print">{{ $accreditation->created_at->format('Y-m-d h:m') }}</span>
+                    <span class='pull-right float-right'>{{ $accreditation->location }}</span>
+                    <p class='text-center'>Дугаар: {{$accreditation->id}}</p>
                     <br>
+                    <p  style="font-size: 16px;line-height: 36px;">Монгол Улсын Иргэний хуулийн 62 дугаар зүйлийн 62.3-д заасныг үндэслэн
+                    {{ $accreditation->province }} мужийн
+                    {{ $accreditation->city }} хотын
+                    {{ $accreditation->street }} / гудамж, өргөн чөлөө, цэцэгт гудамж/-ны
+                    {{ $accreditation->house_number }} дугаар байрны
+                    {{ $accreditation->number }} тоотод оршин суух
+                    {{ $accreditation->lastname }} овогтой
+                    {{ $accreditation->firstname }} (РД:
+                    {{ $accreditation->userreg_number }} би энэхүү итгэмжлэлээр
+                    {{ $accreditation->value }} үйлдэл хийх эрхийг Монгол Улсын
+                    {{ $accreditation->city2 }} /Хот, аймаг/-ын
+                    {{ $accreditation->district }} /дүүрэг, сум/-ын
+                    {{ $accreditation->khoroo }}. /хороо, баг/,
+                    {{ $accreditation->street2 }} (хороолол, хотхон, гудамж)-ын
+                    {{ $accreditation->house_number2 }} (байр, гудамжийн дугаар )-ын
+                    {{ $accreditation->number2 }} тоотод оршин суух
+                    {{ $accreditation->replastname }} овогтой
+                    {{ $accreditation->repfirstname }} -д итгэмжлэн олгож байна.</p>
                     <br>
-                    <p class="print-main">Монгол Улсын Иргэний хуулийн 62 дугаар зүйлийн 62.3-д заасныг үндэслэн
-                        <input name="ex1prov" placeholder="муж" type="text" size="0" required> мужийн
-                        <input name="ex1city" placeholder="хот" type="text" size="0" required> хотын
-                        <input name="ex1street" placeholder="гудамж, өргөн чөлөө" type="text" size="0" required> / гудамж, өргөн чөлөө, цэцэгт гудамж/-ны
-                        <input name="ex1numb" placeholder="байрны дугаар" type="text" size="0" required> дугаар байрны
-                        <input name="ex1no" placeholder="тоот" type="text" size="0" required> тоотод оршин суух
-                        <input name="ex1userlastname" placeholder="Овог" type="text" size="0" required> овогтой
-                        <input name="ex1userfirstname" placeholder="Нэр" type="text" size="0" required> (РД:
-                        <input name="ex1userreg_number" oninput="this.value = this.value.toUpperCase()" placeholder="Регистер дугаар" type="text" size="0" required>) би энэхүү итгэмжлэлээр
-                        <input name="ex1text" placeholder="итгэмжлэлийн утга" type="text" size="0" required> үйлдэл хийх эрхийг Монгол Улсын
-                        <input name="ex1city1" placeholder="Хот, аймаг" type="text" size="0" required> /Хот, аймаг/-ын
-                        <input name="ex1stage" placeholder="дүүрэг, сум" type="text" size="0" required> /дүүрэг, сум/-ын
-                        <input name="exloc1" placeholder="хороо, баг" type="text" size="0" required>. /хороо, баг/,
-                        <input name="ex1street1" placeholder="хороолол, гудамж" type="text" size="0" required> (хороолол, хотхон, гудамж)-ын
-                        <input name="ex1bnumber" placeholder="байр, гудамжийн дугаар" type="text" size="0" required> (байр, гудамжийн дугаар )-ын
-                        <input name="ex1no1" placeholder="тоот" type="text" size="0" required> тоотод оршин суух
-                        <input name="ex1representativelastname" placeholder="Овог" type="text" size="0" required> овогтой
-                        <input name="ex1representativefirstname" placeholder="Итгэмжлэх хүний нэр" type="text" size="0" required> -д итгэмжлэн олгож байна.</p>
-                    <br>
-                    <p class="print-main">Энэхүү итгэмжлэл нь олгосон өдрөөс эхлэн
-                        <input type="text" name="ex1timedate" placeholder="Он сар өдөр" size="0" required> /сар, жил/-ын хугацаанд хүчинтэй болно.</p>
+                    <p style="font-size: 16px;line-height: 36px;">Энэхүү итгэмжлэл нь олгосон өдрөөс эхлэн
+                    {{ $accreditation->timedate }} /сар, жил/-ын хугацаанд хүчинтэй болно.</p>
                     <div class="row">
                         <div class="col">
-                            <p class="print-main">ИТГЭМЖЛЭГЧ :
-                                <input name="ex1Representativename" placeholder="Итгэмжлэгчийн нэр" type="text" size="0" required>
+                            <p >ИТГЭМЖЛЭГЧ :
+                            {{ $accreditation->repname }}
                             </p>
-                            <p class="print-main">............................................. /гарын үсэг/</p>
-                            <p class="print-main">Иргэний үнэмлэхний №
-                                <input placeholder="Итгэмжлэгчийн Иргэний үнэмлэхний №" name="ex1passwordnumber" type="text" size="0" required>
+                            <p >............................................. /гарын үсэг/</p>
+                            <p >Иргэний үнэмлэхний №
+                            {{ $accreditation->rep_pass_number }}
                             </p>
-                            <p class="print-main">Регистрийн №
-                                <input placeholder="Регистерийн дугаар" name="ex1registernumber" type="text" size="0" required>
+                            <p >Регистрийн №
+                            {{ $accreditation->reg_number }}
                             </p>
                         </div>
                         <div class="col">
-                            <p class="print">ИТГЭМЖЛЭГДЭГЧ :
-                                <input class="print-main" placeholder="Итгэмжлэгдэгчийн нэр" name="ex1trusteename" type="text" size="0" required>
+                            <p >ИТГЭМЖЛЭГДЭГЧ :
+                            {{ $accreditation->trusteename }}
                             </p>
-                            <p class="print-main">............................................. /гарын үсэг/</p>
-                            <p class="print-main">Иргэний үнэмлэхний №
-                                <input placeholder="Итгэмжлэгдэгчийн" name="ex1trusteepasswordnumber" type="text" size="0" required>
+                            <p >............................................. /гарын үсэг/</p>
+                            <p >Иргэний үнэмлэхний №
+                            {{ $accreditation->trusteepassnumber }}
                             </p>
-                            <p class="print-main">Регистрийн №
-                                <input placeholder="Итгэмжлэгдэгчийн регистр" name="ex1trusteeregisternumber" type="text" size="0" required>
+                            <p >Регистрийн №
+                            {{ $accreditation->trusteeregnumber }}
                             </p>
                         </div>
                     </div>
                 </div>
-                <input name="notary_id" type="hidden" value="{{Auth::user()->id}}">
-                <button id="print_button" type="submit" class="btn btn-default">Илгээх</button>
-            </form>
-
+                <button id="print_button"  class="btn btn-default">Хэвлэх</button>
         </div>
     </page>
 </div>
 <script>
-    $(document).ready(function() {
-        function resizeInput() {
-            $(this).attr('size', $(this).val().length);
-        }
-
-        $('input[type="text"]')
-            .each(resizeInput)
-            .keyup(resizeInput);
-        //date format
-    });
+$('#print_button').click(function(){
+		$( '#printer' ).print( {
+			mediaPrint: false,
+			title: 'Итгэмжлэл #{{$accreditation->id}}',
+		});
+});
 </script>
 @endsection

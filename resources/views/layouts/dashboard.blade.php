@@ -132,6 +132,7 @@
   <script src="{{ asset('assets/js/plugins/bootstrap-notify.js') }}"></script>
 
   <script src="{{ asset('assets/js/now-ui-dashboard.min.js?v=1.3.0') }}" type="text/javascript"></script>
+  <script src="{{ asset('assets/js/core/jQuery.print.min.js') }}"></script>
 
   <script src="{{ asset('assets/demo/demo.js') }}"></script>
   <script src="{{Request::is('user') ? asset('assets/js/admin/users.js'): ''}}"></script>

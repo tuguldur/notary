@@ -46,4 +46,8 @@ Route::post("/create/loan","contractController@save_loan");
 // delete a contract
 Route::get("/delete/accreditation/{id}","contractController@delete_accreditation");
 Route::get("/delete/loan/{id}","contractController@delete_loan");
+//view 
+Route::get("/view/accreditation/{id}","contractController@view_accreditation");
+Route::get("/view/loan/{id}","contractController@view_loan");
+
 

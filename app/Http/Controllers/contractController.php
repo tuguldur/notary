@@ -120,8 +120,8 @@ class contractController extends Controller
         return redirect('/contract');
     }
     public function view_accreditation($id){
-        accreditation::find($id)->get();
-        return redirect('/contract');
+        $accreditation = accreditation::find($id)->first();
+        return view('/contract/view/accreditation',['accreditation' => $accreditation]);
     } 
     public function view_loan($id){
         loan::find($id)->get();
