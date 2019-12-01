@@ -29,6 +29,7 @@
                     </div>
                 </div>
             </div>
+            @if(!$accreditations->isEmpty())
             <h4 class="card-title pl-3">Хийгдсэн Итгэмжлэлүүд</h4>
             <div class="row p-3">
             @foreach ($accreditations as $accreditation)
@@ -58,8 +59,8 @@
                     </div>
             @endforeach
             </div>
-        </div>
-
+        @endif
+        @if(!$loans->isEmpty())
             <h4 class="card-title pl-3">Хийгдсэн Зээлийн гэрээнүүд</h4>
             <div class="row p-3">
             @foreach ($loans as $loan)
@@ -89,8 +90,9 @@
                     </div>
                     </div>
             @endforeach
-            @endif
             </div>
+            @endif
+            @endif
         </div>
     </div>
 </div>
