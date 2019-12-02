@@ -7,6 +7,7 @@ use App\loan;
 use App\accreditation;
 use Carbon\Carbon;
 use Auth;
+use App\User;
 class contractController extends Controller
 {
     public function __construct()
@@ -15,9 +16,16 @@ class contractController extends Controller
     }
     public function index(){
         $notary_id = Auth::user()->id;
-        $loan = loan::where('notary_id', $notary_id)->get();
-        $accreditation = accreditation::where('notary_id', $notary_id)->get();
-        return view('notary/contract',['accreditations'=>$accreditation,'loans'=>$loan]);
+        $user = User::pluck('registration_number');
+        if(Auth::user()->type==3){
+            $loan = loan::get();
+            $accreditation = accreditation::get();
+        }
+        else{
+            $loan = loan::where('notary_id', $notary_id)->get();
+            $accreditation = accreditation::where('notary_id', $notary_id)->get();
+        }
+        return view('notary/contract',['accreditations'=>$accreditation,'loans'=>$loan,'users'=>$user]);
     }
     public function accreditation(){
         return view('contract/create/accreditation');
@@ -55,7 +63,7 @@ class contractController extends Controller
             'price' => '10000',
             'status' => '1', // 1: төлбөр төлөх 2: баталгаажсан
             'notary_id' => $req->notary_id,
-            'user_id' => 'not_set',
+            'user_id' => 'хоосон',
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
         );
@@ -104,7 +112,7 @@ class contractController extends Controller
             'status' => '1',// 1: төлбөр төлөх 2: баталгаажсан
             'price' => $req->ex2price1 * 0.5 / 100,
             'notary_id' => $req->notary_id,
-            'user_id' => 'not_set',
+            'user_id' => 'хоосон',
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
         );
@@ -138,6 +146,22 @@ class contractController extends Controller
         $loan = loan::find($id)->first();
         if($loan->status==1) $loan->status = '2';
         else $loan->status = '1';
+        $loan->save();
+        return back();
+    }
+    public function accreditation_user(Request $req){
+        $reg_number = $req->user_registration_number;
+        $id = $req->id;
+        $accreditation = accreditation::find($id);
+        $accreditation->user_id = mb_strtoupper($reg_number);
+        $accreditation->save();
+        return back();
+    }
+    public function loan_user(Request $req){
+        $reg_number = $req->user_registration_number;
+        $id = $req->id;
+        $loan = loan::find($id);
+        $loan->user_id = mb_strtoupper($reg_number);
         $loan->save();
         return back();
     }

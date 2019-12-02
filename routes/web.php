@@ -51,5 +51,8 @@ Route::get("/view/loan/{id}","contractController@view_loan");
 // маягтын төлөв өөрчөх
 Route::get('/status/accreditation/{id}','contractController@status_accreditation');
 Route::get('/status/loan/{id}','contractController@status_loan');
+// Маягтыг хэрэгэгчийн бүртгэлд хавсаргах
+Route::post('/contract/accreditation/user','contractController@accreditation_user');
+Route::post('/contract/loan/user','contractController@loan_user');
 
 

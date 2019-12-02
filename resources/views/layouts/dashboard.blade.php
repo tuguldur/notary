@@ -135,6 +135,7 @@
   <script src="{{ asset('assets/js/core/jQuery.print.min.js') }}"></script>
 
   <script src="{{ asset('assets/demo/demo.js') }}"></script>
+  <script src="{{ asset('assets/js/admin/contract.js') }}"></script>
   <script src="{{Request::is('user') ? asset('assets/js/admin/users.js'): ''}}"></script>
   <script src="{{Request::is('request') ? asset('assets/js/admin/request.js'): ''}}"></script>
   <script>

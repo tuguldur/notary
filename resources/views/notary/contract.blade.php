@@ -36,6 +36,19 @@
                     <div class="col-md-3">
                     <div class="card">
                         <div class="card-body">
+                        <div style="position: absolute;right: 12px;">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></a>
+                            <div class="dropdown-menu">
+                            <a href="#" class="dropdown-item add_user" data-id='{{$accreditation->id}}' data-type="accreditation" data-user="{{$accreditation->user_id}}">Үйлчлүүлэгч нэмэх</a>
+                            @if($accreditation->status==1)
+                            <a href="/status/accreditation/{{$accreditation->id}}" class="dropdown-item">Батлах</a>
+                            @else
+                            <a href="/status/accreditation/{{$accreditation->id}}" class="dropdown-item">Цуцлах</a>
+                            @endif
+                            <div class="dropdown-divider"></div>
+                            <a href="/delete/accreditation/{{$accreditation->id}}" class="dropdown-item text-danger">Устгах</a>
+                            </div>
+                            </div>
                             <h4 class="card-title mt-2">Итгэмжлэл #{{$accreditation->id}}</h4>
                             <h6 class="card-subtitle mb-2 text-muted">Итгэмжлэлийн маягт (ерөнхий)</h6>
                             <p class="card-text">
@@ -48,12 +61,6 @@
                             Үүсгэсэн: {{$accreditation->created_at->diffForHumans()}}
 						    </p>
                             <a href="/view/accreditation/{{$accreditation->id}}" class="card-link">Үзэх</a>
-                            <a href="/delete/accreditation/{{$accreditation->id}}" class="card-link float-right text-warning">Устгах</a>
-                            @if($accreditation->status==1)
-                            <a href="/status/accreditation/{{$accreditation->id}}" class="card-link float-right text-success">Батлах</a>
-                            @else
-                            <a href="/status/accreditation/{{$accreditation->id}}" class="card-link float-right text-warning">Цуцлах</a>
-                            @endif
                         </div>
                     </div>
                     </div>
@@ -67,7 +74,20 @@
                     <div class="col-md-3">
                     <div class="card">
                         <div class="card-body">
-                            <h4 class="card-title mt-2">Зээлийн гэрээ #{{$loan->id}}</h4>
+                        <div style="position: absolute;right: 12px;">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></a>
+                            <div class="dropdown-menu">
+                            <a href="#" class="dropdown-item add_user" data-id='{{$loan->id}}' data-type="loan" data-user="{{$loan->user_id}}">Үйлчлүүлэгч нэмэх</a>
+                            @if($loan->status==1)
+                            <a href="/status/loan/{{$loan->id}}" class="dropdown-item">Батлах</a>
+                            @else
+                            <a href="/status/loan/{{$loan->id}}" class="dropdown-item">Цуцлах</a>
+                            @endif
+                            <div class="dropdown-divider"></div>
+                            <a href="/delete/loan/{{$loan->id}}" class="dropdown-item text-danger">Устгах</a>
+                            </div>
+                        </div>
+                            <h4 class="card-title mt-2" style="font-size:1.5em;">Зээлийн гэрээ #{{$loan->id}}</h4>
                             <h6 class="card-subtitle mb-2 text-muted">Зээл өгөгчийн гэрээний маягт</h6>
                             <p class="card-text">
                                 {!! $loan->status == 1 
@@ -79,13 +99,6 @@
                               Үүсгэсэн: {{$loan->created_at->diffForHumans()}}
 						    </p>
                             <a href="/view/loan/{{$loan->id}}" class="card-link">Үзэх</a>
-
-                            <a href="/delete/loan/{{$loan->id}}" class="card-link float-right text-warning">Устгах</a>
-                            @if($loan->status==1)
-                            <a href="/status/loan/{{$loan->id}}" class="card-link float-right text-success">Батлах</a>
-                            @else
-                            <a href="/status/loan/{{$loan->id}}" class="card-link float-right text-warning">Цуцлах</a>
-                            @endif
                         </div>
                     </div>
                     </div>
@@ -93,6 +106,31 @@
             </div>
             @endif
             @endif
+        </div>
+    </div>
+</div>
+<!-- Loan Add a User Dialog -->
+<div class="modal fade" id="user_dialog" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <form method="POST" id="user_dialog_form">
+                    <div class="form-group">
+                        <label for="user_registration_number">Сонгох хэрэглэгчийхаа Регистрийн дугаарыг оруулна уу.</label>
+                        <input class="form-control" list="users" name="user_registration_number" id="user_registration_number" placeholder="Регистрийн дугаар" required/>
+                        <input type="hidden" name="id" id="type_id">
+                        @csrf
+                        <datalist id="users">
+                            @foreach($users as $user)
+                            <option value="{{$user}}">
+                            @endforeach
+                        </datalist>
+                    </div>
+                    <div class="mt-3">
+                        <button type="submit" class="btn btn-primary float-right">Хадгалах</button>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
 </div>
