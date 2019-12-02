@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="utf-8" />
   <link rel="apple-touch-icon" sizes="76x76" href="{{ asset('assets/img/apple-icon.png') }}">
@@ -47,7 +46,7 @@
               <p>Маягтууд</p>
             </a>
           </li>
-          <li class="{{ Request::is('profile') ? 'active' : '' }}" style="display: {{Auth::user()->type == 3 ? 'none' : ''}}">
+          <li class="{{ Request::is('profile') ? 'active' : '' }}">
             <a href="/profile">
               <i class="now-ui-icons users_single-02"></i>
               <p>Бүртгэл</p>

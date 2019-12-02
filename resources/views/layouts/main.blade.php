@@ -79,7 +79,7 @@
                   <span class="navbar-toggler-bar bar3"></span>
                 </button>
               </div>
-              <a class="navbar-brand" href="№">@yield('title')</a>
+              <a class="navbar-brand" href="#">@yield('title')</a>
             </div>
             <button
               class="navbar-toggler"

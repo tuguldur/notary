@@ -16,7 +16,7 @@ Route::get('/', function () {
 });
 Auth::routes();
 // нэвтэрсэн үед орох холбоосууд
-Route::get('/dashboard', 'HomeController@index')->name('home');
+Route::get('/dashboard', 'HomeController@index');
 // profile view, update [admin, client, notary]
 Route::get('/profile', 'Profile@index');
 Route::post('/profile', 'Profile@update');
