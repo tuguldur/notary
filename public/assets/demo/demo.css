@@ -146,3 +146,61 @@ page.a4 {
 .preview p {
     font-size: 16px;
 }
+/* dashboard */
+.card-stats .statistics {
+    position: relative;
+    text-align: center;
+    padding: 15px 0;
+}
+.card-stats [class*="col-"] .statistics:after {
+    position: absolute;
+    right: 0;
+    top: 20px;
+    width: 1px;
+    height: calc(100% - 40px);
+    content: "";
+    background: #ddd;
+}
+.card-stats [class*="col-"]:last-child .statistics:after {
+    display: none;
+}
+.card-stats .icon {
+    display: inline-block;
+    vertical-align: top;
+    margin: 0 15px;
+}
+.info .icon {
+    color: #888;
+    transition: transform 0.4s, box-shadow 0.4s;
+}
+.icon.icon-primary {
+    color: #f96332;
+}
+.icon.icon-success {
+    color: #18ce0f;
+}
+.icon.icon-info {
+    color: #2ca8ff;
+}
+.icon.icon-danger {
+    color: #ff3636;
+}
+.info .info-title {
+    margin: 15px 0 5px;
+    padding: 0 15px;
+    color: #2c2c2c;
+    font-weight: 700;
+}
+.card-stats .statistics .stats-title {
+    margin-bottom: 5px;
+    color: #9a9a9a;
+    font-weight: 400;
+}
+.card-stats .statistics {
+    position: relative;
+    text-align: center;
+    padding: 15px 0;
+}
+.info .icon > i {
+    font-size: 2.3em;
+}

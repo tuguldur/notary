@@ -13,8 +13,8 @@ $(function() {
         $("#type_id").val(id);
         $("#user_dialog").modal("show");
     });
-});
-$("#user_dialog").on("hidden.bs.modal", function() {
-    $("#type_id,#user_registration_number").val("");
-    $("#user_dialog_form").attr("action", "/");
+    $("#user_dialog").on("hidden.bs.modal", function() {
+        $("#type_id,#user_registration_number").val("");
+        $("#user_dialog_form").attr("action", "/");
+    });
 });

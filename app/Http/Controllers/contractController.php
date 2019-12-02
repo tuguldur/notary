@@ -21,6 +21,10 @@ class contractController extends Controller
             $loan = loan::get();
             $accreditation = accreditation::get();
         }
+        else if(Auth::user()->type == 1){
+            $loan = loan::where('user_id', Auth::user()->registration_number)->get();
+            $accreditation = accreditation::where('user_id', Auth::user()->registration_number)->get();
+        }
         else{
             $loan = loan::where('notary_id', $notary_id)->get();
             $accreditation = accreditation::where('notary_id', $notary_id)->get();

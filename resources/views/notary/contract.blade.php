@@ -3,10 +3,10 @@
     <div class="row row justify-content-md-center">
     <div class="card">
         <div class="card-body">
-            <h4 class="card-title pl-3">Маягтууд</h4>
+            <h5 class="card-title pl-3">Маягтууд</h5>
             @if(Auth::user()->type == 2 && Auth::user()->confirmed == 0)
             <p class="text-center">Та бүртэлээ баталгаажуулсан байх шаардлагатай</p>
-            @else
+            @elseif(Auth::user()->type != 1)
             <div class="row p-3">
                 <div class="col-md-3">
                     <div class="card">
@@ -29,6 +29,7 @@
                     </div>
                 </div>
             </div>
+            @endif
             @if(!$accreditations->isEmpty())
             <h4 class="card-title pl-3">Хийгдсэн Итгэмжлэлүүд</h4>
             <div class="row p-3">
@@ -36,6 +37,7 @@
                     <div class="col-md-3">
                     <div class="card">
                         <div class="card-body">
+                        @if(Auth::user()->type != 1)
                         <div style="position: absolute;right: 12px;">
                             <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></a>
                             <div class="dropdown-menu">
@@ -49,6 +51,7 @@
                             <a href="/delete/accreditation/{{$accreditation->id}}" class="dropdown-item text-danger">Устгах</a>
                             </div>
                             </div>
+                            @endif
                             <h4 class="card-title mt-2">Итгэмжлэл #{{$accreditation->id}}</h4>
                             <h6 class="card-subtitle mb-2 text-muted">Итгэмжлэлийн маягт (ерөнхий)</h6>
                             <p class="card-text">
@@ -62,6 +65,7 @@
 						    </p>
                             <a href="/view/accreditation/{{$accreditation->id}}" class="card-link">Үзэх</a>
                         </div>
+                        
                     </div>
                     </div>
             @endforeach
@@ -74,6 +78,7 @@
                     <div class="col-md-3">
                     <div class="card">
                         <div class="card-body">
+                        @if(Auth::user()->type != 1)
                         <div style="position: absolute;right: 12px;">
                             <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></a>
                             <div class="dropdown-menu">
@@ -87,6 +92,7 @@
                             <a href="/delete/loan/{{$loan->id}}" class="dropdown-item text-danger">Устгах</a>
                             </div>
                         </div>
+                        @endif
                             <h4 class="card-title mt-2" style="font-size:1.5em;">Зээлийн гэрээ #{{$loan->id}}</h4>
                             <h6 class="card-subtitle mb-2 text-muted">Зээл өгөгчийн гэрээний маягт</h6>
                             <p class="card-text">
@@ -104,7 +110,6 @@
                     </div>
             @endforeach
             </div>
-            @endif
             @endif
         </div>
     </div>
