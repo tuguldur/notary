@@ -46,6 +46,12 @@
               <p>Маягтууд</p>
             </a>
           </li>
+          <li class="{{ Request::is('report') ? 'active' : '' }}" style="display: {{Auth::user()->type != 1 ? '' : 'none'}}">
+            <a href="/report">
+              <i class="now-ui-icons files_paper"></i>
+              <p>Тайлан</p>
+            </a>
+          </li>
           <li class="{{ Request::is('profile') ? 'active' : '' }}">
             <a href="/profile">
               <i class="now-ui-icons users_single-02"></i>
@@ -69,7 +75,7 @@
     </div>
     <div class="main-panel" id="main-panel">
       <!-- Navbar -->
-      <nav class="navbar navbar-expand-lg navbar-transparent  bg-primary  navbar-absolute">
+      <nav class="navbar navbar-expand-lg navbar-transparent bg-primary navbar-absolute">
         <div class="container-fluid">
           <div class="navbar-wrapper">
             <div class="navbar-toggle">
@@ -86,6 +92,19 @@
             <span class="navbar-toggler-bar navbar-kebab"></span>
           </button>
           <div class="collapse navbar-collapse justify-content-end" id="navigation">
+          @if(Request::is('user') || Request::is('contract') || Request::is('request'))
+          <form id="search-form" method="POST" action="{{ url()->current() }}/search">
+          @csrf
+              <div class="input-group no-border">
+                <input type="text" class="form-control" placeholder="Хайх..." id="search-input" name="search" autocomplete="off">
+                <div class="input-group-append">
+                  <div class="input-group-text">
+                    <i class="now-ui-icons ui-1_zoom-bold"></i>
+                  </div>
+                </div>
+              </div>
+            </form>
+            @endif
             <ul class="navbar-nav">
               <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

@@ -15,7 +15,7 @@ class users extends Seeder
             // Create User
             $user = new User();
             $user->name = "Нэргүй Бямбадорж";
-            $user->email = 'client@brainstall.team';
+            $user->email = 'client@notary.mn';
             $user->registration_number = 'ТА97011810';
             $user->phone = '99868427';
             $user->type = '1';// 1 = user; 2 = notary; 3 = admin;
@@ -26,7 +26,7 @@ class users extends Seeder
             // Create Notary
             $user = new User();
             $user->name = "Нотариат";
-            $user->email = 'notary@brainstall.team';
+            $user->email = 'notary@notary.mn';
             $user->registration_number = 'ТА00000000';
             $user->phone = '99111199';
             $user->type = '2';// 1 = user; 2 = notary; 3 = admin;
@@ -38,7 +38,7 @@ class users extends Seeder
             // Create Admin
             $user = new User();
             $user->name = "Админ";
-            $user->email = 'admin@brainstall.team';
+            $user->email = 'admin@notary.mn';
             $user->registration_number = 'ТА00000001';
             $user->phone = '99111199';
             $user->type = '3';// 1 = user; 2 = notary; 3 = admin;

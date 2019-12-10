@@ -54,5 +54,5 @@ Route::get('/status/loan/{id}','contractController@status_loan');
 // Маягтыг хэрэгэгчийн бүртгэлд хавсаргах
 Route::post('/contract/accreditation/user','contractController@accreditation_user');
 Route::post('/contract/loan/user','contractController@loan_user');
-
-
+// Хайлт, шүүлт
+Route::post('/contract/search','search@contract');
