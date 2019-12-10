@@ -8,6 +8,19 @@ $(function() {
     $("#users").on("shown.bs.modal", function() {
         $("#save-user").prop("disabled", false);
     });
+    $("#password").blur(function() {
+        var user_id = $("#user_id").val();
+        console.log(user_id);
+        if ($(this).val() && user_id !== "0") {
+            $("#save-user").prop("disabled", true);
+            $("#add_password").html(
+                "Нууц үг солих шаардлага бол хоосон үлдээхийг анхаарна уу."
+            );
+        } else {
+            $("#save-user").prop("disabled", false);
+            $("#add_password").html("");
+        }
+    });
     $("#password_next").keyup(function() {
         var e = $("#password").val();
         var new_password = e.trim();
@@ -88,7 +101,9 @@ $(function() {
         $(
             "#username,#email,#password,#password_next,#registration_number,#phone"
         ).val("");
-        $("#add_registration_number,#add_email").html("");
+        $(
+            "#add_registration_number,#add_email,#add_password_next,#add_password"
+        ).html("");
         $("#role_select").val("1");
         $("#user_id").val("0");
         $("#user-loader").removeClass("d-none");
@@ -110,7 +125,7 @@ $(function() {
         var id = $(this).attr("data-key");
         $.get("/user/delete/" + id, function(e) {
             if (e == "ok") $("#users").modal("hide");
-            location.reload();
+            location.replace("/user");
         });
     });
 });

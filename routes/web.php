@@ -56,3 +56,5 @@ Route::post('/contract/accreditation/user','contractController@accreditation_use
 Route::post('/contract/loan/user','contractController@loan_user');
 // Хайлт, шүүлт
 Route::post('/contract/search','search@contract');
+Route::post('/request/search','search@request');
+Route::post('/user/search','search@user');

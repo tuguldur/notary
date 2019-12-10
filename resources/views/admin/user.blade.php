@@ -24,7 +24,7 @@
                         Эрх
                       </th>
                       <th>
-                       Бүртгэл үүсгэсэн
+                       Бүртгэл шинэчилсэн 
                       </th>
                     </thead>
                     <tbody id="user-table">
@@ -76,12 +76,12 @@
               </div>
               <div class="form-group">
                 <label for="password">Нууц үг</label>
-                <input type="password" class="form-control" id="password" placeholder="Нууц үг" name="password" required>
+                <input type="password" class="form-control" id="password" placeholder="Нууц үг" name="password">
                 <small id="add_password" class="form-text text-danger"></small>
               </div>
               <div class="form-group">
                 <label for="password_next">Нууц үг давтах</label>
-                <input type="password" class="form-control" id="password_next" placeholder="Нууц үг давтах" name="password_next" required>
+                <input type="password" class="form-control" id="password_next" placeholder="Нууц үг давтах" name="password_next">
                 <small id="add_password_next" class="form-text text-danger"></small>
               </div>
               <div id="role-select-container">

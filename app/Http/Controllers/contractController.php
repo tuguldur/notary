@@ -144,14 +144,14 @@ class contractController extends Controller
         if($accreditation->status==1) $accreditation->status = '2';
         else $accreditation->status = '1';
         $accreditation->save();
-        return back();
+        return redirect('/contract');
     }
     public function status_loan($id){
         $loan = loan::find($id)->first();
         if($loan->status==1) $loan->status = '2';
         else $loan->status = '1';
         $loan->save();
-        return back();
+        return redirect('/contract');
     }
     public function accreditation_user(Request $req){
         $reg_number = $req->user_registration_number;
@@ -159,7 +159,7 @@ class contractController extends Controller
         $accreditation = accreditation::find($id);
         $accreditation->user_id = mb_strtoupper($reg_number);
         $accreditation->save();
-        return back();
+        return redirect('/contract');
     }
     public function loan_user(Request $req){
         $reg_number = $req->user_registration_number;
@@ -167,6 +167,6 @@ class contractController extends Controller
         $loan = loan::find($id);
         $loan->user_id = mb_strtoupper($reg_number);
         $loan->save();
-        return back();
+        return redirect('/contract');
     }
 }

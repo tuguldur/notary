@@ -57,12 +57,11 @@ class adminUsers extends Controller
             $user->registration_number = mb_strtoupper($request->registration_number);
             $user->type                = $request->type;
             $user->phone               = $request->phone;
-            $user->password            = bcrypt($request->password);
-            $user->created_at          = Carbon::now()->format('Y-m-d H:i:s');
+            $user->password            = $request->password ? bcrypt($request->password) : $user->password ;
             $user->updated_at          = Carbon::now()->format('Y-m-d H:i:s');
             $user->save();
         }
-        return back();
+        return redirect('/user');
     }
     public function check_email(Request $req)
     {

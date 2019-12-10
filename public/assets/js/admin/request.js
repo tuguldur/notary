@@ -44,7 +44,7 @@ $(function() {
         $.get(
             "/request/delete/?notary=" + notary_id + "&confirmation=" + conf_id,
             function(req) {
-                if (req == "ok") location.reload();
+                if (req == "ok") location.replace("/request");
             }
         );
         console.log(notary_id, conf_id);

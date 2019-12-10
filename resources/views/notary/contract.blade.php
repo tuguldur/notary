@@ -3,10 +3,17 @@
     <div class="row row justify-content-md-center">
     <div class="card">
         <div class="card-body">
-            <h5 class="card-title pl-3">Маягтууд</h5>
+        <div class="d-flex mt-3 mb-1">
+            <h4 class="card-title pl-3 m-0">Маягтууд</h4>
+            <div class="spacer"></div>
+            <div class="custom-control custom-switch" style="margin-top:8px;">
+                <input type="checkbox" class="custom-control-input" id="filter">
+                <label class="custom-control-label" for="filter">Зөвхөн баталгаажсан маягтууд</label>
+            </div>
+            </div>
             @if(Auth::user()->type == 2 && Auth::user()->confirmed == 0)
             <p class="text-center">Та бүртэлээ баталгаажуулсан байх шаардлагатай</p>
-            @elseif(Auth::user()->type != 1)
+            @elseif(Auth::user()->type != 1 && !isset($search))
             <div class="row p-3">
                 <div class="col-md-3">
                     <div class="card">
@@ -35,7 +42,7 @@
             <div class="row p-3">
             @foreach ($accreditations as $accreditation)
                     <div class="col-md-3">
-                    <div class="card">
+                    <div class="card {{$accreditation->status == 1 ? 'status': ''}}">
                         <div class="card-body">
                         @if(Auth::user()->type != 1)
                         <div style="position: absolute;right: 12px;">
@@ -76,7 +83,7 @@
             <div class="row p-3">
             @foreach ($loans as $loan)
                     <div class="col-md-3">
-                    <div class="card">
+                    <div class="card {{$loan->status == 1 ? 'status': ''}}">
                         <div class="card-body">
                         @if(Auth::user()->type != 1)
                         <div style="position: absolute;right: 12px;">
@@ -111,6 +118,9 @@
             @endforeach
             </div>
             @endif
+            @if(isset($search) && empty($accreditation))
+                <p class="text-center p-3 text-danger">Маягт олдсонгүй!</p>
+            @endif
         </div>
     </div>
 </div>
@@ -139,4 +149,12 @@
         </div>
     </div>
 </div>
+<script>
+    $('#filter').change(function(){
+        var filter  = $(this).is(":checked");
+        console.log(filter);
+        if(filter) $('.status').hide();
+        else  $('.status').show();
+    });
+</script>
 @endsection

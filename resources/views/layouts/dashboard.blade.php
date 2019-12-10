@@ -92,11 +92,11 @@
             <span class="navbar-toggler-bar navbar-kebab"></span>
           </button>
           <div class="collapse navbar-collapse justify-content-end" id="navigation">
-          @if(Request::is('user') || Request::is('contract') || Request::is('request'))
-          <form id="search-form" method="POST" action="{{ url()->current() }}/search">
+          @if(Request::is('user') || Request::is('contract') || Request::is('request') || Request::is('*/search'))
+          <form id="search-form" method="POST" action="{{ Request::is('*/search') ? '/'.Request::segment(1).'' : url()->current() }}/search">
           @csrf
               <div class="input-group no-border">
-                <input type="text" class="form-control" placeholder="Хайх..." id="search-input" name="search" autocomplete="off">
+                <input type="text" class="form-control" placeholder="Хайх..." id="search-input" name="search" autocomplete="off" value="{{ isset($search) ? $search : ''}}">
                 <div class="input-group-append">
                   <div class="input-group-text">
                     <i class="now-ui-icons ui-1_zoom-bold"></i>
@@ -153,8 +153,8 @@
 
   <script src="{{ asset('assets/demo/demo.js') }}"></script>
   <script src="{{ asset('assets/js/admin/contract.js') }}"></script>
-  <script src="{{Request::is('user') ? asset('assets/js/admin/users.js'): ''}}"></script>
-  <script src="{{Request::is('request') ? asset('assets/js/admin/request.js'): ''}}"></script>
+  <script src="{{Request::is('user*') ? asset('assets/js/admin/users.js'): ''}}"></script>
+  <script src="{{Request::is('request*') ? asset('assets/js/admin/request.js'): ''}}"></script>
   <script>
     $(document).ready(function() {
       // Javascript method's body can be found in assets/js/demos.js

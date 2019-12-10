@@ -60,7 +60,7 @@ class notaryConfirm extends Controller
             $req = confirmation::find($request_id);
             $req->status = '1';
             $req->save();
-            return back();
+            return redirect('/request');
         }
         else{
             $user = User::find($request->user_id);
@@ -70,7 +70,7 @@ class notaryConfirm extends Controller
             $req = confirmation::find($request_id);
             $req->status = '0';
             $req->save();
-            return back();
+            return redirect('/request');
         }
     }
     public function delete(Request $request){
