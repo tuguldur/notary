@@ -18,16 +18,34 @@ class contractController extends Controller
         $notary_id = Auth::user()->id;
         $user = User::pluck('registration_number');
         if(Auth::user()->type==3){
-            $loan = loan::get();
-            $accreditation = accreditation::get();
+            // $loan = loan::get();
+            $loan = loan::join('users', 'users.registration_number', '=', 'loans.user_id')
+            ->select('users.name','loans.*')
+            ->get();
+            $accreditation = accreditation::join('users', 'users.registration_number', '=', 'accreditations.user_id')
+                ->select('users.name','accreditations.*')
+                ->get();
+            if($accreditation->isEmpty()) $accreditation = accreditation::get();
+            if($loan->isEmpty()) $loan = loan::get();
         }
         else if(Auth::user()->type == 1){
             $loan = loan::where('user_id', Auth::user()->registration_number)->get();
             $accreditation = accreditation::where('user_id', Auth::user()->registration_number)->get();
         }
         else{
-            $loan = loan::where('notary_id', $notary_id)->get();
-            $accreditation = accreditation::where('notary_id', $notary_id)->get();
+            $loan = loan::join('users', 'users.registration_number', '=', 'loans.user_id')
+            ->select('users.name','loans.*')
+            ->where('notary_id', $notary_id)
+            ->get();
+            $accreditation = accreditation::join('users', 'users.registration_number', '=', 'accreditations.user_id')
+                ->select('users.name','accreditations.*')
+                ->where('notary_id', $notary_id)
+                ->get();
+            if($accreditation->isEmpty()) $accreditation = accreditation::where('notary_id', $notary_id)->get();
+            if($loan->isEmpty()) $loan = loan::where('notary_id', $notary_id)->get();
+
+            
+            
         }
         return view('notary/contract',['accreditations'=>$accreditation,'loans'=>$loan,'users'=>$user]);
     }
@@ -68,6 +86,7 @@ class contractController extends Controller
             'status' => '1', // 1: төлбөр төлөх 2: баталгаажсан
             'notary_id' => $req->notary_id,
             'user_id' => 'хоосон',
+            'end' => $req->end,
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
         );
@@ -117,6 +136,7 @@ class contractController extends Controller
             'price' => $req->ex2price1 * 0.5 / 100,
             'notary_id' => $req->notary_id,
             'user_id' => 'хоосон',
+            'end' => $req->end,
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
         );

@@ -60,7 +60,11 @@
                     </div>
                 </div>
                 <input name="notary_id" type="hidden" value="{{Auth::user()->id}}">
-                <button id="print_button" type="submit" class="btn btn-default">Илгээх</button>
+                <div class="d-flex print">
+                <button id="print_button" type="submit" class="btn btn-default">Хадгалах</button>
+                <div class="spacer"></div>
+                <input class="datepicker" data-date-format="yyyy/mm/dd" style="max-height: 36px;margin-top: 18px;" name="end" required autocomplete="off" placeholder="Дуусах хугацаа">
+                </div>
             </form>
 
         </div>

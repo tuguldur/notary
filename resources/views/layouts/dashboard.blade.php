@@ -12,6 +12,7 @@
   <meta name="csrf-token" content="{{ csrf_token() }}">
   <!--     Fonts and icons     -->
   <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css"/>
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
   <!-- CSS Files -->
   <link href="{{ asset('assets/css/bootstrap.min.css') }}" rel="stylesheet" />
@@ -155,11 +156,14 @@
   <script src="{{ asset('assets/js/admin/contract.js') }}"></script>
   <script src="{{Request::is('user*') ? asset('assets/js/admin/users.js'): ''}}"></script>
   <script src="{{Request::is('request*') ? asset('assets/js/admin/request.js'): ''}}"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js" integrity="sha256-bqVeqGdJ7h/lYPq6xrPv/YGzMEb6dNxlfiTUHSgRCp8=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/locales/bootstrap-datepicker.mn.min.js" integrity="sha256-Oje4oknU31Ez0/Y9T7x8G9k61Yngp4cFeJMJjKnSwCs=" crossorigin="anonymous"></script>
   <script>
     $(document).ready(function() {
       // Javascript method's body can be found in assets/js/demos.js
       // demo.initDashboardPageCharts();
-
+      $('.datepicker').datepicker({ language: 'mn' });
+      $('.datepicker').datepicker();
       $(function () {
         $('[data-toggle="tooltip"]').tooltip()
       })

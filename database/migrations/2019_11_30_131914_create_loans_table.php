@@ -56,6 +56,7 @@ class CreateLoansTable extends Migration
             $table->string('price');
             $table->string('notary_id');
             $table->string('user_id');
+            $table->date('end');
             $table->timestamps();
         });
     }

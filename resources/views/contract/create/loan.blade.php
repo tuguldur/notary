@@ -71,7 +71,11 @@
                 <span class="text-right" id="totalprice"></span>
                 </br>
                 <input name="notary_id" type="hidden" value="{{Auth::user()->id}}">
+                <div class="d-flex print">
                 <button id="print_button" type="submit" class="btn btn-default">Хадгалах</button>
+                <div class="spacer"></div>
+                <input class="datepicker" data-date-format="yyyy/mm/dd" style="max-height: 36px;margin-top: 18px;" name="end" required autocomplete="off" placeholder="Дуусах хугацаа">
+                </div>
                 <span class="text-right" id="totalprice"></span>
             </form>
         </div>

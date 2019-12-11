@@ -44,6 +44,7 @@ class CreateAccreditationsTable extends Migration
             $table->string('notary_id');
             $table->string('user_id');
             $table->string('price')->default('10000');
+            $table->date('end');
             $table->timestamps();
         });
     }

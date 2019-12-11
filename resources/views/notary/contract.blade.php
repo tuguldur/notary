@@ -60,7 +60,7 @@
                             </div>
                             @endif
                             <h4 class="card-title mt-2">Итгэмжлэл #{{$accreditation->id}}</h4>
-                            <h6 class="card-subtitle mb-2 text-muted">Итгэмжлэлийн маягт (ерөнхий)</h6>
+                            <h6 class="card-subtitle mb-2 text-muted">{{ $accreditation->name }}</h6>
                             <p class="card-text">
                                 {!! $accreditation->status == 1 
                                    ? '<span class="badge text-warning" data-toggle="tooltip" data-placement="bottom" title="" style="font-size:12px;" data-original-title="Төлөх дүн:'.$accreditation->price.'">Төлбөр төлөх шаардлагатай</span>'
@@ -69,6 +69,9 @@
                             </p>
                             <p class="card-text tex-muted">
                             Үүсгэсэн: {{$accreditation->created_at->diffForHumans()}}
+						    </p>
+                            <p class="card-text tex-muted">
+                            Дуусах: {{ $accreditation->end }}
 						    </p>
                             <a href="/view/accreditation/{{$accreditation->id}}" class="card-link">Үзэх</a>
                         </div>
@@ -101,7 +104,7 @@
                         </div>
                         @endif
                             <h4 class="card-title mt-2" style="font-size:1.5em;">Зээлийн гэрээ #{{$loan->id}}</h4>
-                            <h6 class="card-subtitle mb-2 text-muted">Зээл өгөгчийн гэрээний маягт</h6>
+                            <h6 class="card-subtitle mb-2 text-muted">{{$loan->name}}</h6>
                             <p class="card-text">
                                 {!! $loan->status == 1 
                                    ? '<span class="badge text-warning" data-toggle="tooltip" data-placement="bottom" title="" style="font-size:12px;" data-original-title="Төлөх дүн:'.$loan->price.'">Төлбөр төлөх шаардлагатай</span>'
@@ -110,6 +113,9 @@
                             </p>
                             <p class="card-text tex-muted">
                               Үүсгэсэн: {{$loan->created_at->diffForHumans()}}
+						    </p>
+                            <p class="card-text tex-muted">
+                            Дуусах: {{ $loan->end }}
 						    </p>
                             <a href="/view/loan/{{$loan->id}}" class="card-link">Үзэх</a>
                         </div>

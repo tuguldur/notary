@@ -204,3 +204,6 @@ page.a4 {
 .info .icon > i {
     font-size: 2.3em;
 }
+.datepicker-days {
+    padding: 10px;
+}
