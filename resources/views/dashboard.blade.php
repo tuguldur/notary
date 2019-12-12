@@ -23,7 +23,7 @@
                                 <div class="icon icon-success">
                                     <i class="now-ui-icons business_money-coins"></i>
                                 </div>
-                                <h3 class="info-title"><small>₮</small>{{ $salary }}</h3>
+                                <h3 class="info-title">{{ $salary }} <small>₮</small></h3>
                                 <h6 class="stats-title">Нийт орлого</h6>
                             </div>
                         </div>
@@ -70,7 +70,7 @@
                                 <div class="icon icon-success">
                                     <i class="now-ui-icons business_money-coins"></i>
                                 </div>
-                                <h3 class="info-title"><small>₮</small>{{ $salary }}</h3>
+                                <h3 class="info-title">{{ $salary }} <small>₮</small></h3>
                                 <h6 class="stats-title">Нийт орлого</h6>
                             </div>
                         </div>
@@ -94,7 +94,7 @@
                                 <div class="icon icon-info">
                                     <i class="now-ui-icons business_money-coins"></i>
                                 </div>
-                                <h3 class="info-title"><small>₮</small>{{ $salary }}</h3>
+                                <h3 class="info-title">{{ $salary }} <small>₮</small></h3>
                                 <h6 class="stats-title">Нийт зарлага</h6>
                             </div>
                         </div>

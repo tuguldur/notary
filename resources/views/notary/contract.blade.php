@@ -42,7 +42,7 @@
             <div class="row p-3">
             @foreach ($accreditations as $accreditation)
                     <div class="col-md-3">
-                    <div class="card {{$accreditation->status == 1 ? 'status': ''}}">
+                    <div class="card {{$accreditation->status != 2 ? 'status': ''}}">
                         <div class="card-body">
                         @if(Auth::user()->type != 1)
                         <div style="position: absolute;right: 12px;">
@@ -51,7 +51,7 @@
                             <a href="#" class="dropdown-item add_user" data-id='{{$accreditation->id}}' data-type="accreditation" data-user="{{$accreditation->user_id}}">Үйлчлүүлэгч нэмэх</a>
                             @if($accreditation->status==1)
                             <a href="/status/accreditation/{{$accreditation->id}}" class="dropdown-item">Батлах</a>
-                            @else
+                            @elseif($accreditation->status==2)
                             <a href="/status/accreditation/{{$accreditation->id}}" class="dropdown-item">Цуцлах</a>
                             @endif
                             <div class="dropdown-divider"></div>
@@ -62,10 +62,13 @@
                             <h4 class="card-title mt-2">Итгэмжлэл #{{$accreditation->id}}</h4>
                             <h6 class="card-subtitle mb-2 text-muted">{{ $accreditation->name }}</h6>
                             <p class="card-text">
-                                {!! $accreditation->status == 1 
-                                   ? '<span class="badge text-warning" data-toggle="tooltip" data-placement="bottom" title="" style="font-size:12px;" data-original-title="Төлөх дүн:'.$accreditation->price.'">Төлбөр төлөх шаардлагатай</span>'
-                                   : "<span class='badge text-success'>Баталгаажсан</span>"
-                                !!}
+                                @if ($accreditation->status == 1)
+                                <span class="badge text-warning" data-toggle="tooltip" data-placement="bottom" title="" style="font-size:12px;" data-original-title="Төлөх дүн:{{$accreditation->price}} ₮">Төлбөр төлөх шаардлагатай</span>
+                                @elseif($accreditation->status == 2)
+                                <span class='badge text-success'>Баталгаажсан</span>
+                                @else
+                                <span class='badge text-danger'>Хүчингүй болсон</span>
+                                @endif
                             </p>
                             <p class="card-text tex-muted">
                             Үүсгэсэн: {{$accreditation->created_at->diffForHumans()}}
@@ -86,7 +89,7 @@
             <div class="row p-3">
             @foreach ($loans as $loan)
                     <div class="col-md-3">
-                    <div class="card {{$loan->status == 1 ? 'status': ''}}">
+                    <div class="card {{$loan->status != 2 ? 'status': ''}}">
                         <div class="card-body">
                         @if(Auth::user()->type != 1)
                         <div style="position: absolute;right: 12px;">
@@ -95,8 +98,9 @@
                             <a href="#" class="dropdown-item add_user" data-id='{{$loan->id}}' data-type="loan" data-user="{{$loan->user_id}}">Үйлчлүүлэгч нэмэх</a>
                             @if($loan->status==1)
                             <a href="/status/loan/{{$loan->id}}" class="dropdown-item">Батлах</a>
-                            @else
+                            @elseif($loan->status==2)
                             <a href="/status/loan/{{$loan->id}}" class="dropdown-item">Цуцлах</a>
+                            @else
                             @endif
                             <div class="dropdown-divider"></div>
                             <a href="/delete/loan/{{$loan->id}}" class="dropdown-item text-danger">Устгах</a>
@@ -106,10 +110,13 @@
                             <h4 class="card-title mt-2" style="font-size:1.5em;">Зээлийн гэрээ #{{$loan->id}}</h4>
                             <h6 class="card-subtitle mb-2 text-muted">{{$loan->name}}</h6>
                             <p class="card-text">
-                                {!! $loan->status == 1 
-                                   ? '<span class="badge text-warning" data-toggle="tooltip" data-placement="bottom" title="" style="font-size:12px;" data-original-title="Төлөх дүн:'.$loan->price.'">Төлбөр төлөх шаардлагатай</span>'
-                                   : "<span class='badge text-success'>Баталгаажсан</span>"
-                                !!}
+                                @if($loan->status == 1) 
+                                 <span class="badge text-warning" data-toggle="tooltip" data-placement="bottom" title="" style="font-size:12px;" data-original-title="Төлөх дүн: {{$loan->price}} ₮">Төлбөр төлөх шаардлагатай</span>'
+                                @elseif($loan->status == 2) 
+                                 <span class='badge text-success'>Баталгаажсан</span>
+                                @else
+                                <span class='badge text-danger'>Хүчингүй болсон</span>
+                                @endif
                             </p>
                             <p class="card-text tex-muted">
                               Үүсгэсэн: {{$loan->created_at->diffForHumans()}}

@@ -58,3 +58,5 @@ Route::post('/contract/loan/user','contractController@loan_user');
 Route::post('/contract/search','search@contract');
 Route::post('/request/search','search@request');
 Route::post('/user/search','search@user');
+// Тайлан
+Route::get('/report','report@index');

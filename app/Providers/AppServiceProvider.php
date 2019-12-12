@@ -3,7 +3,9 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
-
+use App\loan;
+use App\accreditation;
+use Carbon\Carbon;
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -24,5 +26,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         \Carbon\Carbon::setLocale('mn');
+         accreditation::whereDate('end', '<', Carbon::now())->update(array('status' => 3));
+         loan::whereDate('end', '<', Carbon::now())->update(array('status' => 3));
     }
 }

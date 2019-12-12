@@ -68,10 +68,15 @@
                 <div class="w-100">
                 <button id="print_button" class="btn btn-default float-left">Хэвлэх</button>
                 <div class="float-right" style="line-height: 58px;">
-                        {!! $loan->status == 1 
-                                   ? '<span class="badge text-warning" data-toggle="tooltip" data-placement="bottom" title="" style="font-size:12px;" data-original-title="Төлөх дүн:'.$loan->price.'">Төлбөр төлөх шаардлагатай</span>'
-                                   : "<span class='badge text-success'>Баталгаажсан</span>"
-                        !!}
+                <p>Дуусах хугацаа: {{$loan->end}} | Төлөв: 
+                                @if ($loan->status == 1)
+                                <span class="badge text-warning" data-toggle="tooltip" data-placement="bottom" title="" style="font-size:12px;" data-original-title="Төлөх дүн:{{$loan->price}} ₮">Төлбөр төлөх шаардлагатай</span>
+                                @elseif($loan->status == 2)
+                                <span class='badge text-success'>Баталгаажсан</span>
+                                @else
+                                <span class='badge text-danger'>Хүчингүй болсон</span>
+                                @endif
+                                </p>
                 <div>
                 <div>
         </div>

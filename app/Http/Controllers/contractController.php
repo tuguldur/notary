@@ -18,7 +18,6 @@ class contractController extends Controller
         $notary_id = Auth::user()->id;
         $user = User::pluck('registration_number');
         if(Auth::user()->type==3){
-            // $loan = loan::get();
             $loan = loan::join('users', 'users.registration_number', '=', 'loans.user_id')
             ->select('users.name','loans.*')
             ->get();
@@ -43,9 +42,6 @@ class contractController extends Controller
                 ->get();
             if($accreditation->isEmpty()) $accreditation = accreditation::where('notary_id', $notary_id)->get();
             if($loan->isEmpty()) $loan = loan::where('notary_id', $notary_id)->get();
-
-            
-            
         }
         return view('notary/contract',['accreditations'=>$accreditation,'loans'=>$loan,'users'=>$user]);
     }
