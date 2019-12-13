@@ -207,3 +207,105 @@ page.a4 {
 .datepicker-days {
     padding: 10px;
 }
+/* report */
+.reports-listing-padded {
+    padding-left: 39px;
+}
+.report-group-title {
+    margin-top: 15px;
+    margin-left: -31px;
+    color: #586069;
+}
+.reports-listing {
+    position: relative;
+    padding-bottom: 20px;
+    margin-bottom: 15px;
+}
+.reports-listing:before {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 24px;
+    z-index: -1;
+    display: block;
+    width: 2px;
+    content: "";
+    background-color: #eff1f3;
+}
+.octicon {
+    margin: 0 10px;
+    display: inline-block;
+    vertical-align: text-top;
+    fill: currentColor;
+}
+svg:not(:root) {
+    overflow: hidden;
+}
+.octicon {
+    vertical-align: text-bottom;
+}
+.commit-group-title .octicon-git-commit {
+    margin-right: 17px;
+    color: #c6cbd1;
+    background: #fff;
+}
+.commit-group {
+    margin-top: 10px;
+    list-style-type: none;
+}
+
+.table-list-bordered {
+    border-bottom-color: #eaecef;
+}
+.table-list {
+    display: table;
+    width: 100%;
+    max-width: 780px;
+    color: #6a737d;
+    table-layout: fixed;
+    border: 1px solid #e1e4e8;
+    border-radius: 6px;
+}
+.table-list-item {
+    position: relative;
+    display: table-row;
+    list-style: none;
+}
+
+.table-list-cell {
+    position: relative;
+    display: table-cell;
+    padding: 8px 10px;
+    font-size: 12px;
+    vertical-align: top;
+}
+.commits-list-item .commit-title {
+    margin: 0;
+}
+.commit .commit-title,
+.commit .commit-title a {
+    color: #444d56;
+    font-size: 14px !important;
+}
+.commits-list-item .commit-meta {
+    margin-top: 1px;
+    font-weight: 400;
+    color: #586069;
+}
+
+.commit-links-cell {
+    text-align: right;
+}
+.table-list-cell {
+    position: relative;
+    display: table-cell;
+    padding: 8px 10px;
+    font-size: 12px;
+    vertical-align: top;
+}
+.BtnGroup-item {
+    margin: 0;
+}
+.commit .commit-title a > span {
+    font-size: 14px !important;
+}

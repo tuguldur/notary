@@ -18,10 +18,10 @@ class contractController extends Controller
         $notary_id = Auth::user()->id;
         $user = User::pluck('registration_number');
         if(Auth::user()->type==3){
-            $loan = loan::join('users', 'users.registration_number', '=', 'loans.user_id')
+            $loan = loan::leftJoin('users', 'users.registration_number', '=', 'loans.user_id')
             ->select('users.name','loans.*')
             ->get();
-            $accreditation = accreditation::join('users', 'users.registration_number', '=', 'accreditations.user_id')
+            $accreditation = accreditation::leftJoin('users', 'users.registration_number', '=', 'accreditations.user_id')
                 ->select('users.name','accreditations.*')
                 ->get();
             if($accreditation->isEmpty()) $accreditation = accreditation::get();
@@ -32,16 +32,14 @@ class contractController extends Controller
             $accreditation = accreditation::where('user_id', Auth::user()->registration_number)->get();
         }
         else{
-            $loan = loan::join('users', 'users.registration_number', '=', 'loans.user_id')
+            $loan = loan::leftJoin('users', 'users.registration_number', '=', 'loans.user_id')
             ->select('users.name','loans.*')
             ->where('notary_id', $notary_id)
             ->get();
-            $accreditation = accreditation::join('users', 'users.registration_number', '=', 'accreditations.user_id')
+            $accreditation = accreditation::leftJoin('users', 'users.registration_number', '=', 'accreditations.user_id')
                 ->select('users.name','accreditations.*')
                 ->where('notary_id', $notary_id)
                 ->get();
-            if($accreditation->isEmpty()) $accreditation = accreditation::where('notary_id', $notary_id)->get();
-            if($loan->isEmpty()) $loan = loan::where('notary_id', $notary_id)->get();
         }
         return view('notary/contract',['accreditations'=>$accreditation,'loans'=>$loan,'users'=>$user]);
     }
@@ -141,33 +139,41 @@ class contractController extends Controller
     }
     public function delete_accreditation($id){
         accreditation::find($id)->delete();
-        return redirect('/contract');
+        $url =  substr(url()->previous(), strrpos(url()->previous(), '/') + 1);
+        if($url == 'report') return redirect('/report');
+        else return redirect('/contract');
     } 
     public function delete_loan($id){
         loan::find($id)->delete();
-        return redirect('/contract');
+        $url =  substr(url()->previous(), strrpos(url()->previous(), '/') + 1);
+        if($url == 'report') return redirect('/report');
+        else return redirect('/contract');
     }
     public function view_accreditation($id){
-        $accreditation = accreditation::find($id)->first();
+        $accreditation = accreditation::where("id", $id)->first();
         return view('/contract/view/accreditation',['accreditation' => $accreditation]);
     } 
     public function view_loan($id){
-        $loan = loan::find($id)->first();
+        $loan = loan::where("id", $id)->first();
         return view('/contract/view/loan',['loan' => $loan]);
     }
     public function status_accreditation($id){
-        $accreditation = accreditation::find($id)->first();
+        $accreditation = accreditation::where("id", $id)->first();
         if($accreditation->status==1) $accreditation->status = '2';
         else $accreditation->status = '1';
         $accreditation->save();
-        return redirect('/contract');
+        $url =  substr(url()->previous(), strrpos(url()->previous(), '/') + 1);
+        if($url == 'report') return redirect('/report');
+        else return redirect('/contract');
     }
     public function status_loan($id){
-        $loan = loan::find($id)->first();
+        $loan = loan::where("id", $id)->first();
         if($loan->status==1) $loan->status = '2';
         else $loan->status = '1';
         $loan->save();
-        return redirect('/contract');
+        $url =  substr(url()->previous(), strrpos(url()->previous(), '/') + 1);
+        if($url == 'report') return redirect('/report');
+        else return redirect('/contract');
     }
     public function accreditation_user(Request $req){
         $reg_number = $req->user_registration_number;
