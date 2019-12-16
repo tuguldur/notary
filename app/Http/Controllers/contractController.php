@@ -140,13 +140,13 @@ class contractController extends Controller
     public function delete_accreditation($id){
         accreditation::find($id)->delete();
         $url =  substr(url()->previous(), strrpos(url()->previous(), '/') + 1);
-        if($url == 'report') return redirect('/report');
+        if($url == 'report' || $url == 'report?type=y' || $url == 'report?type=m' || $url = 'report?type=d') return redirect('/report');
         else return redirect('/contract');
     } 
     public function delete_loan($id){
         loan::find($id)->delete();
         $url =  substr(url()->previous(), strrpos(url()->previous(), '/') + 1);
-        if($url == 'report') return redirect('/report');
+        if($url == 'report' || $url == 'report?type=y' || $url == 'report?type=m' || $url = 'report?type=d') return redirect('/report');
         else return redirect('/contract');
     }
     public function view_accreditation($id){
@@ -163,7 +163,7 @@ class contractController extends Controller
         else $accreditation->status = '1';
         $accreditation->save();
         $url =  substr(url()->previous(), strrpos(url()->previous(), '/') + 1);
-        if($url == 'report') return redirect('/report');
+        if($url == 'report' || $url == 'report?type=y' || $url == 'report?type=m' || $url = 'report?type=d') return redirect('/report');
         else return redirect('/contract');
     }
     public function status_loan($id){
@@ -172,7 +172,7 @@ class contractController extends Controller
         else $loan->status = '1';
         $loan->save();
         $url =  substr(url()->previous(), strrpos(url()->previous(), '/') + 1);
-        if($url == 'report') return redirect('/report');
+        if($url == 'report' || $url == 'report?type=y' || $url == 'report?type=m' || $url = 'report?type=d') return redirect('/report');
         else return redirect('/contract');
     }
     public function accreditation_user(Request $req){

@@ -162,6 +162,8 @@
                     @else
                     {{ $item->first()->created_at->format('Y') }}
                     @endif
+                    Нийт маягтийн тоо: <b>{{ count($item) }}</b> • 
+                    Нийт хуримтлуулах орлого: <b>{{ $item->sum('price') }}</b>
                 </div>
             @foreach($item as $accreditation)
             <ol class="commit-group table-list table-list-bordered pl-1">
@@ -178,12 +180,12 @@
                                     @endif
                                 </a>
                             </p>
-                            <a class="commit-author text-dark">{{$accreditation->client_name ? $accreditation->client_name : 'Үйлчлүүлэгч сонгоогүй'}}</a> илгээсэн:
+                            <a class="commit-author text-dark">Үйлчлүүлэгч: <b>{{$accreditation->client_name ? $accreditation->client_name : 'Үйлчлүүлэгч сонгоогүй'}}</b></a> • Илгээсэн:
                             <relative-time  class="no-wrap"
                             data-placement="bottom" data-toggle="tooltip" data-original-title="{{$accreditation->created_at}}">{{$accreditation->created_at->diffForHumans()}}
                             </relative-time>
                             </br>
-                            <a class="commit-author text-dark">Нотариат: {{$accreditation->notary_name}}</a>
+                            <a class="commit-author text-dark">Нотариат: <b>{{$accreditation->notary_name}}</b> • Төлбөр: <b>{{$accreditation->price}}</b>₮</a>
                         </div>
                         <div class="spacer"></div>
                         <div class="commit-links-cell table-list-cell d-none d-md-block">
@@ -217,7 +219,7 @@
         <div class="container">
         <h4 class="card-title pl-3">Зээлийн гэрээ</h4>
             <div class="reports-listing reports-listing-padded">
-            @foreach($loans as $item)
+            @foreach($loans as $key => $item)
             <div class="report-group-title">
                     <svg class="octicon octicon-git-commit" viewBox="0 0 14 16" version="1.1" width="14" height="16"
                         aria-hidden="true">
@@ -233,6 +235,8 @@
                     @else
                     {{ $item->first()->created_at->format('Y') }}
                     @endif
+                    Нийт маягтийн тоо: <b>{{ count($item) }}</b> • 
+                    Нийт хуримтлуулах орлого: <b>{{ $item->sum('price') }}</b>
                 </div>
             @foreach($item as $loan)
             <ol class="commit-group table-list table-list-bordered pl-1">
@@ -249,12 +253,12 @@
                                     @endif
                                 </a>
                             </p>
-                            <a class="commit-author text-dark">{{$loan->client_name ? $loan->client_name : 'Үйлчлүүлэгч сонгоогүй'}}</a> илгээсэн:
+                            <a class="commit-author text-dark">Үйлчлүүлэгч: <b>{{$loan->client_name ? $loan->client_name : 'Үйлчлүүлэгч сонгоогүй'}}</b></a> • Илгээсэн:
                             <relative-time  class="no-wrap"
                             data-placement="bottom" data-toggle="tooltip" data-original-title="{{$loan->created_at}}">{{$loan->created_at->diffForHumans()}}
                             </relative-time>
                             </br>
-                            <a class="commit-author text-dark">Нотариат: {{$loan->notary_name}}</a>
+                            <a class="commit-author text-dark">Нотариат: <b>{{$loan->notary_name}}</b> • Төлбөр: <b>{{$loan->price}}</b>₮</a>
                         </div>
                         <div class="spacer"></div>
                         <div class="commit-links-cell table-list-cell d-none d-md-block">
