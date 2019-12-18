@@ -17,23 +17,18 @@ php artisan key:generate
 
 ```
 type: admin
-email: admin@brainstall.team
+email: admin@notary.mn
 password: password
 ```
 
 ```
 type: notary
-email: notary@brainstall.team
+email: notary@notary.mn
 password: password
 ```
 
 ```
 type: client
-email: client@brainstall.team
+email: client@notary.mn
 password: password
 ```
-
-### Author
-
-Khuvituguldur Narantsetseg /
-[Messenger](https://m.me/tuguldur)
