@@ -13,10 +13,10 @@ return [
     |
     */
 
-    'reset' => 'Your password has been reset!',
-    'sent' => 'We have e-mailed your password reset link!',
-    'token' => 'This password reset token is invalid.',
-    'user' => "We can't find a user with that e-mail address.",
-    'throttled' => 'Please wait before retrying.',
+    'reset' => 'Нууц үг амжилттай солигдлоо.',
+    'sent' => 'Имэйл хаягруу нууц үг сэргээх холбоосыг илгээлээ',
+    'token' => 'Имэйл хаяг буруу байна.',
+    'user' => "Имэйл хаяг бүртгэлгүй байна.",
+    'throttled' => 'Дараа дахин оролдоно уу.',
 
 ];
