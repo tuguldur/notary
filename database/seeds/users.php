@@ -3,6 +3,7 @@
 use Illuminate\Database\Seeder;
 use Carbon\Carbon;
 use App\User;
+use App\Role;
 class users extends Seeder
 {
     /**
@@ -13,6 +14,7 @@ class users extends Seeder
     public function run()
     {
             // Create User
+            $role_user = Role::where('name','user')->first();
             $user = new User();
             $user->name = "Нэргүй Бямбадорж";
             $user->email = 'client@notary.mn';
@@ -23,29 +25,33 @@ class users extends Seeder
             $user->created_at = Carbon::now()->format('Y-m-d H:i:s');
             $user->updated_at = Carbon::now()->format('Y-m-d H:i:s');
             $user->save();
+            $user->roles()->attach($role_user);
             // Create Notary
-            $user = new User();
-            $user->name = "Нотариат";
-            $user->email = 'notary@notary.mn';
-            $user->registration_number = 'ТА00000000';
-            $user->phone = '99111199';
-            $user->type = '2';// 1 = user; 2 = notary; 3 = admin;
-            $user->confirmed = '1';
-            $user->password = bcrypt('password');
-            $user->created_at = Carbon::now()->format('Y-m-d H:i:s');
-            $user->updated_at = Carbon::now()->format('Y-m-d H:i:s');
-            $user->save();
+            $role_notary = Role::where('name','notary')->first();
+            $notary = new User();
+            $notary->name = "Нотариат";
+            $notary->email = 'notary@notary.mn';
+            $notary->registration_number = 'ТА00000000';
+            $notary->phone = '99111199';
+            $notary->type = '2';// 1 = user; 2 = notary; 3 = admin;
+            $notary->confirmed = '1';
+            $notary->password = bcrypt('password');
+            $notary->created_at = Carbon::now()->format('Y-m-d H:i:s');
+            $notary->updated_at = Carbon::now()->format('Y-m-d H:i:s');
+            $notary->save();
+            $notary->roles()->attach($role_notary);
             // Create Admin
-            $user = new User();
-            $user->name = "Админ";
-            $user->email = 'admin@notary.mn';
-            $user->registration_number = 'ТА00000001';
-            $user->phone = '99111199';
-            $user->type = '3';// 1 = user; 2 = notary; 3 = admin;
-            $user->password = bcrypt('password');
-            $user->created_at = Carbon::now()->format('Y-m-d H:i:s');
-            $user->updated_at = Carbon::now()->format('Y-m-d H:i:s');
-            $user->save();
-            
+            $role_admin = Role::where('name','admin')->first();
+            $admin = new User();
+            $admin->name = "Админ";
+            $admin->email = 'admin@notary.mn';
+            $admin->registration_number = 'ТА00000001';
+            $admin->phone = '99111199';
+            $admin->type = '3';// 1 = user; 2 = notary; 3 = admin;
+            $admin->password = bcrypt('password');
+            $admin->created_at = Carbon::now()->format('Y-m-d H:i:s');
+            $admin->updated_at = Carbon::now()->format('Y-m-d H:i:s');
+            $admin->save();
+            $admin->roles()->attach($role_admin);
     }
 }

@@ -20,21 +20,27 @@ Route::get('/dashboard', 'HomeController@index');
 // profile view, update [admin, client, notary]
 Route::get('/profile', 'Profile@index');
 Route::post('/profile', 'Profile@update');
-// Admin user routes
-Route::get('/user', 'adminUsers@index');
-Route::get('/user/{id}','adminUsers@find');
-Route::get('/user/delete/{id}','adminUsers@delete');
-Route::post('/user/check/email','adminUsers@check_email');
-Route::post('/user/check/registration_number','adminUsers@check_registration_number');
-Route::post('/user/add','adminUsers@add');
+Route::group(['middleware'=>'roles','roles' => ['comment','admin']], function(){
+    // Admin user routes
+    Route::get('/user', 'adminUsers@index');
+    Route::get('/user/{id}','adminUsers@find');
+    Route::get('/user/delete/{id}','adminUsers@delete');
+    Route::post('/user/check/email','adminUsers@check_email');
+    Route::post('/user/check/registration_number','adminUsers@check_registration_number');
+    Route::post('/user/add','adminUsers@add');
+    // Admin get confirmations
+    Route::get("/request",'notaryConfirm@all');
+    Route::get("/request/delete",'notaryConfirm@delete');
+    Route::post("/request",'notaryConfirm@switch');
+    Route::get("/request/{id}",'notaryConfirm@find');
+});
 // Notary
-Route::get("/confirm",'notaryConfirm@index');
+Route::get("/confirm",[
+    'uses' => 'notaryConfirm@index',
+    'middleware' => 'roles',
+    'roles' => ['user']
+]);
 Route::post("/confirm",'notaryConfirm@confirm');
-// Admin get confirmations
-Route::get("/request",'notaryConfirm@all');
-Route::get("/request/delete",'notaryConfirm@delete');
-Route::post("/request",'notaryConfirm@switch');
-Route::get("/request/{id}",'notaryConfirm@find');
 // contract
 Route::get("/contract","contractController@index");
 // маягт үүсгэх
