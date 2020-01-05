@@ -8,6 +8,7 @@ use App\confirmation;
 use App\User;
 use Carbon\Carbon;
 use Auth;
+use App\Role;
 class notaryConfirm extends Controller
 {
     public function __construct()
@@ -54,9 +55,11 @@ class notaryConfirm extends Controller
         $request_id = $request->id;
         if($request->status == 0){
             $user = User::find($request->user_id);
+            $user->roles()->detach();
             $user->confirmed = '0';
             $user->type = '2';
             $user->save();
+            $user->roles()->attach(Role::where('name','user')->first());
             $req = confirmation::find($request_id);
             $req->status = '1';
             $req->save();
@@ -64,9 +67,11 @@ class notaryConfirm extends Controller
         }
         else{
             $user = User::find($request->user_id);
+            $user->roles()->detach();
             $user->confirmed = '1';
             $user->type = '2';
             $user->save();
+            $user->roles()->attach(Role::where('name','notary')->first());
             $req = confirmation::find($request_id);
             $req->status = '0';
             $req->save();
@@ -77,8 +82,10 @@ class notaryConfirm extends Controller
         $confirmation_id = $request->confirmation;
         $notary_id = $request->notary;
         $user = User::find($notary_id);
+        $user->roles()->detach();
         $user->confirmed = '0';
         $user->save();
+        $user->roles()->attach(Role::where('name','user')->first());
         $req = confirmation::find($confirmation_id);
         $req->delete();
         return 'ok';

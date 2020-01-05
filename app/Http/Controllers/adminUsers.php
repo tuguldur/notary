@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Carbon\Carbon;
 use App\User;
 use App\confirmation;
+use App\Role;
 class adminUsers extends Controller
 {
     private $user;
@@ -28,16 +29,6 @@ class adminUsers extends Controller
     }
     public function add(Request $request)
     {
-        /*
-            $user->name = "";
-            $user->email = '';
-            $user->registration_number = '';
-            $user->type = '';// 1 = user; 2 = notary; 3 = admin;
-            $user->password = bcrypt('');
-            $user->created_at = Carbon::now()->format('Y-m-d H:i:s');
-            $user->updated_at = Carbon::now()->format('Y-m-d H:i:s');
-            $user->save();
-        */
         $user;
         if ($request->id == 0) {
             $user                      = new User();
@@ -60,6 +51,16 @@ class adminUsers extends Controller
             $user->password            = $request->password ? bcrypt($request->password) : $user->password ;
             $user->updated_at          = Carbon::now()->format('Y-m-d H:i:s');
             $user->save();
+            $user->roles()->detach();
+        }
+        if($request->type == 1){
+            $user->roles()->attach(Role::where('name','user')->first());
+        }
+        if($request->type == 2){
+            $user->roles()->attach(Role::where('name','notary')->first());
+        }
+        if($request->type == 3){
+            $user->roles()->attach(Role::where('name','admin')->first());
         }
         return redirect('/user');
     }
@@ -89,6 +90,7 @@ class adminUsers extends Controller
     public function delete($id)
     {
         $user = User::find($id);
+        $user->roles()->detach();
         $confirmation = confirmation::where('notary_id','=',$id);
         $confirmation->delete();
         $user->delete();

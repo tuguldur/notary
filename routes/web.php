@@ -65,4 +65,8 @@ Route::post('/contract/search','search@contract');
 Route::post('/request/search','search@request');
 Route::post('/user/search','search@user');
 // Тайлан
-Route::get('/report','report@index');
+Route::get('/report',[
+    'uses' => 'report@index',
+    'middleware' => 'roles',
+    'roles' => ['admin','notary']
+]);

@@ -1,5 +1,5 @@
 @extends('layouts.dashboard') 
-@section('title', 'Бүртгэл')
+@section('title', 'Dashboard')
 @section('content')
 <div class="col-md-12">
         <div class="card card-stats">
